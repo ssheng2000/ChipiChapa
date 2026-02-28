@@ -1,6 +1,9 @@
 extends Node2D
 
 @export var pauses_amount := 3
+@export var ice_amount := 0
+@export var mushroom_amount := 0
+@export var bird_amount := 0
 
 enum Mode { RUN, BUILD }
 
@@ -8,10 +11,12 @@ enum Mode { RUN, BUILD }
 
 var mode: Mode = Mode.RUN
 var pauses_remaining := pauses_amount
+var block_selected: DataTypes.Blocks = DataTypes.Blocks.None
 
 func _ready():
 		GlobalEventBus.pause.connect(_on_pause_requested)
 		GlobalEventBus.unpause.connect(_on_unpause_requested)
+		GlobalEventBus.selected_block.connect(_on_block_select)
 		print("pause button;", pause_button)
 		_set_mode(Mode.RUN)
 		_update_pause_button()
@@ -40,3 +45,27 @@ func _on_unpause_requested():
 func _update_pause_button():
 		if pause_button and pause_button.has_method("set_pauses_remaining"):
 				pause_button.set_pauses_remaining(pauses_remaining)
+
+func get_block(block: DataTypes.Blocks) -> int:
+	if block==DataTypes.Blocks.Ice:
+		if ice_amount>0:
+			ice_amount-=1
+			return ice_amount
+	if block==DataTypes.Blocks.Mushroom:
+		if mushroom_amount>0:
+			mushroom_amount-=1
+			return mushroom_amount
+	if block==DataTypes.Blocks.Bird:
+		if bird_amount>0:
+			bird_amount-=1
+			return bird_amount
+	return 0
+		
+
+func _on_block_select(block: DataTypes.Blocks) -> void:
+	if mode == Mode.BUILD:
+		if get_block(block) > 0:
+			block_selected = block
+			print("block_selected", block)
+			GlobalEventBus.block_successfully_selected.emit(block)
+	return

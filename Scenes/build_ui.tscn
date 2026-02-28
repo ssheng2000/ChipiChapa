@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://dtu2rki4r8aiv"]
 
+[ext_resource type="PackedScene" uid="uid://pandrljuc1t7" path="res://Scenes/builder_panel.tscn" id="1_pxqcr"]
 [ext_resource type="Texture2D" uid="uid://4a1detjnkatl" path="res://Assets/Sprites/build_panel.png" id="2_6wlgu"]
 [ext_resource type="Script" uid="uid://eeew3wajavvl" path="res://Levels/build_panel.gd" id="2_pxqcr"]
 [ext_resource type="Texture2D" uid="uid://d4i57vu4p7j" path="res://icon.svg" id="3_3fwla"]
@@ -7,6 +8,12 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pxqcr"]
 size = Vector2(1166.75, 159)
+
+[sub_resource type="InputEventKey" id="InputEventKey_6wlgu"]
+keycode = 32
+
+[sub_resource type="Shortcut" id="Shortcut_pxqcr"]
+events = [SubResource("InputEventKey_6wlgu")]
 
 [node name="Build_UI" type="CanvasLayer" unique_id=211287279]
 
@@ -17,7 +24,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Builder_Panel" parent="MarginContainer" unique_id=2013814623 instance=ExtResource("1_pxqcr")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer" unique_id=335937944]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
@@ -41,6 +54,7 @@ metadata/_edit_lock_ = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
+shortcut = SubResource("Shortcut_pxqcr")
 icon = ExtResource("3_3fwla")
 script = ExtResource("4_s1mob")
 metadata/_edit_use_anchors_ = true
