@@ -32,11 +32,15 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 	# --- Step / ledge climbing ---
+	# If we hit a wall we can't step up, reverse direction.
 	if is_on_floor():
-		_try_step_up(move_dir)
+		if not _try_step_up(move_dir):
+			move_dir *= -1.0
 
 
 ## Automatically walk up small steps using test_move().
+## Returns true if the step was climbed (or there was no obstacle).
+## Returns false if there's a wall that can't be stepped over.
 ##
 ## Algorithm (all checks use the player's real collision shape):
 ##   1. test_move forward – if nothing blocks us, there's no step. Bail out.
@@ -46,7 +50,7 @@ func _physics_process(delta: float) -> void:
 ##   4. From the raised+forward position, test_move downward to find the
 ##      step surface. The remainder tells us the exact step height.
 ##   5. Snap the player up by that height.
-func _try_step_up(dir: float) -> void:
+func _try_step_up(dir: float) -> bool:
 	var forward := Vector2(dir, 0.0).normalized()
 	var move_dist := absf(velocity.x) * get_physics_process_delta_time()
 	if move_dist < 0.5:
@@ -57,7 +61,7 @@ func _try_step_up(dir: float) -> void:
 	# 1. Are we actually blocked horizontally?
 	#    If we can move forward freely there is no step to climb.
 	if not test_move(global_transform, horizontal):
-		return
+		return true  # No obstacle – all good.
 
 	# 2. Can we move upward by MAX_STEP_HEIGHT?
 	var up := Vector2(0, -MAX_STEP_HEIGHT)
@@ -70,7 +74,7 @@ func _try_step_up(dir: float) -> void:
 	var raised_xform := global_transform
 	raised_xform.origin += actual_up
 	if test_move(raised_xform, horizontal):
-		return  # Still blocked – wall is taller than MAX_STEP_HEIGHT.
+		return false  # Still blocked – wall is taller than MAX_STEP_HEIGHT.
 
 	# 4. From raised + forward, cast downward to find the step surface.
 	var forward_xform := raised_xform
@@ -80,14 +84,15 @@ func _try_step_up(dir: float) -> void:
 	var down_blocked := test_move(forward_xform, down, down_collision)
 
 	if not down_blocked:
-		return  # No ground found ahead – it's a gap, don't step into the void.
+		return false  # No ground found ahead – it's a gap, don't step into the void.
 
 	# The travel tells us how far down we went before hitting the surface.
 	var down_travel := down - down_collision.get_remainder()
 	# Step height = how much higher the step surface is than our current feet.
 	var step_height: float = -actual_up.y - down_travel.y
 	if step_height <= 0.0 or step_height > MAX_STEP_HEIGHT:
-		return
+		return false
 
 	# Snap the player up onto the step.
 	global_position.y -= step_height
+	return true
