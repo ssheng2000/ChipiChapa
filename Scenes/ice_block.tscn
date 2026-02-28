@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://j5g1e7ulynug"]
+
+[ext_resource type="PackedScene" uid="uid://btekrsm1oh5n0" path="res://Scenes/buildable_template.tscn" id="1_qpufp"]
+[ext_resource type="Texture2D" uid="uid://d4i57vu4p7j" path="res://icon.svg" id="2_j15nx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x4uxj"]
+size = Vector2(127, 127)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7oqbl"]
+size = Vector2(127, 46)
+
+[node name="StoneBlock" unique_id=1191292781 instance=ExtResource("1_qpufp")]
+block_type = 1
+
+[node name="RigidBody2D" parent="." index="0" unique_id=582075895]
+gravity_scale = 0.0
+
+[node name="CollisionShape2D" parent="RigidBody2D" index="0" unique_id=909133432]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_x4uxj")
+
+[node name="Sprite2D" parent="RigidBody2D" index="1" unique_id=823917014]
+texture = ExtResource("2_j15nx")
+
+[node name="SlideArea" type="Area2D" parent="RigidBody2D" index="2" unique_id=569559346]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D/SlideArea" index="0" unique_id=773377295]
+position = Vector2(0.5, -57)
+shape = SubResource("RectangleShape2D_7oqbl")
