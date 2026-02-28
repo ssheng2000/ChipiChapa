@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://brr34rmifata8" path="res://Levels/level.gd" id="1_nsw7g"]
 [ext_resource type="Texture2D" uid="uid://cbqyya0crk1b3" path="res://Assets/Sprites/snow_tileset_V1.jpeg" id="1_x7nqe"]
-[ext_resource type="Script" uid="uid://nxwangety8i2" path="res://Scripts/pause_button.gd" id="2_s7a6p"]
+[ext_resource type="PackedScene" uid="uid://dtu2rki4r8aiv" path="res://Scenes/build_ui.tscn" id="4_sjjkl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ng53c"]
 texture = ExtResource("1_x7nqe")
@@ -432,7 +432,4 @@ layer_0/tile_data = PackedInt32Array(-9, 65536, 0, -8, 65536, 0, -7, 65536, 0, -
 [node name="Buildables" type="Node2D" parent="." unique_id=498116511]
 position = Vector2(-112, -55)
 
-[node name="PauseButton" type="Button" parent="." unique_id=515742821]
-offset_right = 8.0
-offset_bottom = 8.0
-script = ExtResource("2_s7a6p")
+[node name="Build_UI" parent="." unique_id=211287279 instance=ExtResource("4_sjjkl")]

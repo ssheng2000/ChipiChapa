@@ -4,7 +4,7 @@ extends Node2D
 
 enum Mode { RUN, BUILD }
 
-@onready var pause_button := $PauseButton
+@onready var pause_button := $Build_UI/MarginContainer/PauseButton
 
 var mode: Mode = Mode.RUN
 var pauses_remaining := pauses_amount
@@ -12,7 +12,7 @@ var pauses_remaining := pauses_amount
 func _ready():
 		GlobalEventBus.pause.connect(_on_pause_requested)
 		GlobalEventBus.unpause.connect(_on_unpause_requested)
-
+		print("pause button;", pause_button)
 		_set_mode(Mode.RUN)
 		_update_pause_button()
 
@@ -38,5 +38,5 @@ func _on_unpause_requested():
 		_set_mode(Mode.RUN)
 
 func _update_pause_button():
-		if pause_button and pause_button.has_method("set_uses_left"):
+		if pause_button and pause_button.has_method("set_pauses_remaining"):
 				pause_button.set_pauses_remaining(pauses_remaining)
