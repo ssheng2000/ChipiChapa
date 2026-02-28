@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://bp3mjpokd8os"]
+
+[ext_resource type="PackedScene" uid="uid://btekrsm1oh5n0" path="res://Scenes/buildable_template.tscn" id="1_crnqq"]
+[ext_resource type="Texture2D" uid="uid://d4i57vu4p7j" path="res://icon.svg" id="2_j88tq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6ljjq"]
+size = Vector2(124, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cchwj"]
+size = Vector2(64, 64)
+
+[node name="Bird" unique_id=1191292781 instance=ExtResource("1_crnqq")]
+object_type = "bird"
+
+[node name="WindArea" type="Area2D" parent="RigidBody2D" parent_id_path=PackedInt32Array(582075895) index="0" unique_id=1786720510]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D/WindArea" index="0" unique_id=277479711]
+position = Vector2(94, 0)
+shape = SubResource("RectangleShape2D_6ljjq")
+
+[node name="CollisionShape2D" parent="RigidBody2D" parent_id_path=PackedInt32Array(582075895) index="1" unique_id=909133432]
+shape = SubResource("RectangleShape2D_cchwj")
+
+[node name="Sprite2D" parent="RigidBody2D" parent_id_path=PackedInt32Array(582075895) index="2" unique_id=823917014]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_j88tq")
