@@ -2,7 +2,6 @@ extends Node2D
 class_name Buildable
 
 enum State { INACTIVE, PLACING, ACTIVE } #placed down after dragged, being dragged, unpaused
-const bounce_delay = 0.5
 
 @export var block_type: DataTypes.Blocks = DataTypes.Blocks.None
 var build_mode_enabled = false
@@ -19,7 +18,8 @@ var push_direction
 var state: State = State.ACTIVE
 var dragging := false
 var _bodies_in_wind: Array[Node2D] = []
-var _bodies_on_mushroom: Array[Node2D] = []
+var _mushroom_charged := false
+var _just_bounced := false
 
 @onready var body: Node = get_node_or_null(body_path)
 
@@ -91,19 +91,18 @@ func _physics_process(delta):
 
 # ── Mushroom ──
 func _on_bounce_body_entered(b: Node2D):
-	#if state != State.ACTIVE:
-		#return
-	if b is CharacterBody2D:  # could also use b.is_in_group() to filter between players and other obj
-		_bodies_on_mushroom.append(b)
-		_delayed_bounce(b)
+	if b is CharacterBody2D:
+		if _mushroom_charged:
+			b.velocity.y = -bounce_force
+			_mushroom_charged = false
+			_just_bounced = true
 
 func _on_bounce_body_exited(b: Node2D):
-	_bodies_on_mushroom.erase(b)
-
-func _delayed_bounce(b: CharacterBody2D):
-	await get_tree().create_timer(bounce_delay).timeout
-	if is_instance_valid(b) and b in _bodies_on_mushroom:
-		b.velocity.y = -bounce_force
+	if b is CharacterBody2D:
+		if _just_bounced:
+			_just_bounced = false
+		else:
+			_mushroom_charged = true
 
 # ── Bird / Fan ── and b.is_in_group("player")
 func _on_wind_body_entered(b: Node2D):
