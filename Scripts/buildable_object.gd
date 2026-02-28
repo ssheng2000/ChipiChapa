@@ -10,14 +10,24 @@ var build_mode_enabled = false
 
 @export var bounce_force: float = 600.0
 @export var push_force: float = 300.0
-@export var push_direction: Vector2 = Vector2.RIGHT
+@export var is_blowing_right: bool
+
+var push_direction
+
 
 var state: State = State.PLACING
 var _bodies_in_wind: Array[Node2D] = []
+var _mushroom_charged := false
+var _just_bounced := false
 
 @onready var body: Node = get_node_or_null(body_path)
 
 func _ready():
+	if is_blowing_right:
+		push_direction = Vector2.RIGHT
+	else:
+		push_direction = Vector2.LEFT
+	
 	GlobalEventBus.block_successfully_selected.connect(_on_block_selected)
 	process_mode = Node.PROCESS_MODE_ALWAYS # allow dragging while paused
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -27,13 +37,14 @@ func _ready():
 	# Connect signals based on object type
 	match block_type:
 		DataTypes.Blocks.Mushroom:
-			var bounce_area = get_node_or_null("BounceArea")
+			var bounce_area = get_node_or_null("RigidBody2D/BounceArea")
 			if bounce_area:
-				print("meowmoew")
 				bounce_area.body_entered.connect(_on_bounce_body_entered)
+				bounce_area.body_exited.connect(_on_bounce_body_exited)
 		DataTypes.Blocks.Bird:
 			var wind_area = get_node_or_null("RigidBody2D/WindArea")
 			if wind_area:
+				wind_area.rotation = push_direction.angle()
 				wind_area.body_entered.connect(_on_wind_body_entered)
 				wind_area.body_exited.connect(_on_wind_body_exited)
 
@@ -79,10 +90,18 @@ func _physics_process(delta):
 
 # ── Mushroom ──
 func _on_bounce_body_entered(b: Node2D):
-	#if state != State.ACTIVE:
-		#return
-	if b is CharacterBody2D:  # could also use b.is_in_group() to filter between players and other obj
-		b.velocity.y = -bounce_force
+	if b is CharacterBody2D:
+		if _mushroom_charged:
+			b.velocity.y = -bounce_force
+			_mushroom_charged = false
+			_just_bounced = true
+
+func _on_bounce_body_exited(b: Node2D):
+	if b is CharacterBody2D:
+		if _just_bounced:
+			_just_bounced = false
+		else:
+			_mushroom_charged = true
 
 # ── Bird / Fan ── and b.is_in_group("player")
 func _on_wind_body_entered(b: Node2D):
