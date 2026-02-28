@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://dtu2rki4r8aiv"]
+
+[ext_resource type="PackedScene" uid="uid://beco8e106eotb" path="res://Scenes/build_panel.tscn" id="1_6wlgu"]
+[ext_resource type="Script" uid="uid://eeew3wajavvl" path="res://Levels/sidebar.gd" id="2_pxqcr"]
+[ext_resource type="Texture2D" uid="uid://d4i57vu4p7j" path="res://icon.svg" id="3_3fwla"]
+[ext_resource type="Script" uid="uid://nxwangety8i2" path="res://Scripts/pause_button.gd" id="4_s1mob"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rwgp3"]
+size = Vector2(84, 248)
+
+[node name="Build_UI" type="CanvasLayer" unique_id=211287279]
+
+[node name="BuildPanel" parent="." unique_id=44705675 instance=ExtResource("1_6wlgu")]
+
+[node name="Area2D2" type="Area2D" parent="BuildPanel" unique_id=1509446333]
+position = Vector2(540, 342)
+script = ExtResource("2_pxqcr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BuildPanel/Area2D2" unique_id=1677089801]
+position = Vector2(-195, -63)
+shape = SubResource("RectangleShape2D_rwgp3")
+
+[node name="Sprite2D" type="Sprite2D" parent="BuildPanel/Area2D2" unique_id=2003899221]
+position = Vector2(556, -25)
+scale = Vector2(8.6953125, 1.953125)
+texture = ExtResource("3_3fwla")
+
+[node name="Control" type="Control" parent="." unique_id=261648794]
+layout_mode = 3
+anchors_preset = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="PauseButton" type="Button" parent="Control" unique_id=38707815]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+script = ExtResource("4_s1mob")
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="Control/PauseButton" to="Control/PauseButton" method="_on_pressed"]

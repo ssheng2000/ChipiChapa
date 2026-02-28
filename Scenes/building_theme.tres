@@ -1,4 +1,10 @@
 [gd_resource type="Theme" format=3 uid="uid://dj6ieub883x7q"]
 
+[ext_resource type="Texture2D" uid="uid://4a1detjnkatl" path="res://Assets/Sprites/build_panel.png" id="1_qywex"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wkhf8"]
+texture = ExtResource("1_qywex")
+
 [resource]
 BuildPanel/base_type = &"PanelContainer"
+BuildPanel/styles/panel = SubResource("StyleBoxTexture_wkhf8")
