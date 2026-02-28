@@ -6,9 +6,6 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x4uxj"]
 size = Vector2(16, 16)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7oqbl"]
-size = Vector2(127, 46)
-
 [node name="StoneBlock" unique_id=1191292781 instance=ExtResource("1_qpufp")]
 block_type = 1
 
@@ -20,9 +17,3 @@ shape = SubResource("RectangleShape2D_x4uxj")
 
 [node name="Sprite2D" parent="RigidBody2D" index="1" unique_id=823917014]
 texture = ExtResource("2_qpufp")
-
-[node name="SlideArea" type="Area2D" parent="RigidBody2D" index="2" unique_id=569559346]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D/SlideArea" index="0" unique_id=773377295]
-position = Vector2(0.5, -57)
-shape = SubResource("RectangleShape2D_7oqbl")
