@@ -1,27 +1,25 @@
 [gd_scene format=3 uid="uid://beco8e106eotb"]
 
 [ext_resource type="Script" uid="uid://nxwangety8i2" path="res://Scripts/pause_button.gd" id="1_4uciv"]
-[ext_resource type="Theme" uid="uid://dj6ieub883x7q" path="res://Scenes/building_theme.tres" id="1_wj4hv"]
-[ext_resource type="Script" uid="uid://eeew3wajavvl" path="res://Levels/sidebar.gd" id="2_wj4hv"]
-[ext_resource type="Texture2D" uid="uid://d4i57vu4p7j" path="res://icon.svg" id="3_v5wb6"]
+[ext_resource type="Texture2D" uid="uid://4a1detjnkatl" path="res://Assets/Sprites/build_panel.png" id="2_x7uu3"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ocva3"]
-size = Vector2(84, 248)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4uciv"]
+size = Vector2(255, 46)
 
 [node name="BuildPanel" type="PanelContainer" unique_id=1404955980]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -540.0
-offset_top = -342.0
-offset_right = -545.0
-offset_bottom = -780.0
+offset_left = -558.0
+offset_top = -240.0
+offset_right = -563.0
+offset_bottom = -678.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_wj4hv")
 theme_type_variation = &"BuildPanel"
 
 [node name="Control" type="Control" parent="." unique_id=960154031]
+visible = false
 layout_mode = 2
 metadata/_edit_use_anchors_ = true
 
@@ -32,16 +30,16 @@ offset_bottom = 8.0
 script = ExtResource("1_4uciv")
 metadata/_edit_use_anchors_ = true
 
-[node name="Area2D" type="Area2D" parent="." unique_id=1110513740]
-script = ExtResource("2_wj4hv")
+[node name="Area2D" type="Area2D" parent="." unique_id=2017097008]
+position = Vector2(555, 113)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=968843670]
-position = Vector2(-195, -63)
-shape = SubResource("RectangleShape2D_ocva3")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=805432657]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_4uciv")
+metadata/_edit_lock_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Area2D" unique_id=1653081374]
-position = Vector2(556, -25)
-scale = Vector2(8.6953125, 1.953125)
-texture = ExtResource("3_v5wb6")
+[node name="Sprite2D" type="Sprite2D" parent="Area2D" unique_id=2081160812]
+texture = ExtResource("2_x7uu3")
+metadata/_edit_lock_ = true
 
 [connection signal="pressed" from="Control/PauseButton" to="Control/PauseButton" method="_on_pressed"]

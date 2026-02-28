@@ -21,7 +21,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-GlobalEventBus="*uid://caya50lf5v5mc"
+GlobalEventBus="*res://Scripts/global_event_bus.gd"
 
 [rendering]
 

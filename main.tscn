@@ -13,4 +13,4 @@ levels = Array[PackedScene]([ExtResource("4_272bh")])
 [node name="Level_1" parent="Levels" unique_id=824580844 instance=ExtResource("4_272bh")]
 
 [node name="Player" parent="." unique_id=1287424047 instance=ExtResource("3_7mycd")]
-position = Vector2(-116, -19)
+position = Vector2(574, 335)
