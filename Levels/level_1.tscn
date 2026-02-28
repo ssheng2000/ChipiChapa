@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://24qkhr1a8goe"]
 
 [ext_resource type="PackedScene" uid="uid://cdonasd1xjlnd" path="res://Levels/level_template.tscn" id="1_n0qsc"]
-[ext_resource type="PackedScene" path="res://Scenes/mushroom.tscn" id="2_3mhv4"]
-[ext_resource type="PackedScene" path="res://Scenes/bird.tscn" id="3_rf6l5"]
+[ext_resource type="PackedScene" uid="uid://dar34ede2v7vu" path="res://Scenes/mushroom.tscn" id="2_3mhv4"]
+[ext_resource type="PackedScene" uid="uid://bp3mjpokd8os" path="res://Scenes/bird.tscn" id="3_rf6l5"]
 
 [node name="Level_1" unique_id=824580844 instance=ExtResource("1_n0qsc")]
 ice_amount = 5
