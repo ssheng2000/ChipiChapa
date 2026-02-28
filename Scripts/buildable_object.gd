@@ -10,7 +10,10 @@ var build_mode_enabled = false
 
 @export var bounce_force: float = 600.0
 @export var push_force: float = 300.0
-@export var push_direction: Vector2 = Vector2.RIGHT
+@export var is_blowing_right: bool
+
+var push_direction
+
 
 var state: State = State.ACTIVE
 var dragging := false
@@ -19,6 +22,11 @@ var _bodies_in_wind: Array[Node2D] = []
 @onready var body: Node = get_node_or_null(body_path)
 
 func _ready():
+	if is_blowing_right:
+		push_direction = Vector2.RIGHT
+	else:
+		push_direction = Vector2.LEFT
+	
 	GlobalEventBus.block_successfully_selected.connect(_on_block_selected)
 	add_to_group("buildable")
 	#process_mode = Node.PROCESS_MODE_ALWAYS # allow dragging while paused
@@ -36,6 +44,7 @@ func _ready():
 			
 			var wind_area = get_node_or_null("RigidBody2D/WindArea")
 			if wind_area:
+				wind_area.rotation = push_direction.angle()
 				wind_area.body_entered.connect(_on_wind_body_entered)
 				wind_area.body_exited.connect(_on_wind_body_exited)
 

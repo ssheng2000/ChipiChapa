@@ -10,13 +10,19 @@ size = Vector2(124, 64)
 size = Vector2(64, 64)
 
 [node name="Bird" unique_id=1191292781 instance=ExtResource("1_crnqq")]
-object_type = "bird"
+process_mode = 0
+is_blowing_right = true
 
 [node name="WindArea" type="Area2D" parent="RigidBody2D" parent_id_path=PackedInt32Array(582075895) index="0" unique_id=1786720510]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D/WindArea" index="0" unique_id=277479711]
 position = Vector2(94, 0)
 shape = SubResource("RectangleShape2D_6ljjq")
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D/WindArea" index="1" unique_id=1332719294]
+position = Vector2(93, -2)
+scale = Vector2(1, 0.3515625)
+texture = ExtResource("2_j88tq")
 
 [node name="CollisionShape2D" parent="RigidBody2D" parent_id_path=PackedInt32Array(582075895) index="1" unique_id=909133432]
 shape = SubResource("RectangleShape2D_cchwj")
