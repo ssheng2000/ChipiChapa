@@ -7,6 +7,9 @@ const JUMP_VELOCITY = -400.0
 ## Step climbing settings
 const MAX_STEP_HEIGHT := 100.0  # Max ledge height (pixels) the player can walk up
 
+## The character always moves. Arrow keys flip the direction.
+var move_dir := 1.0  # 1.0 = right, -1.0 = left
+
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -17,18 +20,20 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
-	# Get the input direction and handle the movement/deceleration.
-	var direction := Input.get_axis("ui_left", "ui_right")
-	if direction:
-		velocity.x = direction * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+	# Change direction on key press (not held – just the tap).
+	if Input.is_action_just_pressed("ui_right"):
+		move_dir = 1.0
+	elif Input.is_action_just_pressed("ui_left"):
+		move_dir = -1.0
+
+	# Always move in the current direction.
+	velocity.x = move_dir * SPEED
 
 	move_and_slide()
 
 	# --- Step / ledge climbing ---
-	if is_on_floor() and direction != 0.0:
-		_try_step_up(direction)
+	if is_on_floor():
+		_try_step_up(move_dir)
 
 
 ## Automatically walk up small steps using test_move().
