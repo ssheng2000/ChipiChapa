@@ -19,6 +19,7 @@ var push_direction
 var state: State = State.ACTIVE
 var dragging := false
 var _bodies_in_wind: Array[Node2D] = []
+var _bodies_on_mushroom: Array[Node2D] = []
 
 @onready var body: Node = get_node_or_null(body_path)
 
@@ -40,6 +41,7 @@ func _ready():
 			var bounce_area = get_node_or_null("RigidBody2D/BounceArea")
 			if bounce_area:
 				bounce_area.body_entered.connect(_on_bounce_body_entered)
+				bounce_area.body_exited.connect(_on_bounce_body_exited)
 		DataTypes.Blocks.Bird:
 			
 			var wind_area = get_node_or_null("RigidBody2D/WindArea")
@@ -92,11 +94,15 @@ func _on_bounce_body_entered(b: Node2D):
 	#if state != State.ACTIVE:
 		#return
 	if b is CharacterBody2D:  # could also use b.is_in_group() to filter between players and other obj
+		_bodies_on_mushroom.append(b)
 		_delayed_bounce(b)
-		
+
+func _on_bounce_body_exited(b: Node2D):
+	_bodies_on_mushroom.erase(b)
+
 func _delayed_bounce(b: CharacterBody2D):
 	await get_tree().create_timer(bounce_delay).timeout
-	if is_instance_valid(b):
+	if is_instance_valid(b) and b in _bodies_on_mushroom:
 		b.velocity.y = -bounce_force
 
 # ── Bird / Fan ── and b.is_in_group("player")
