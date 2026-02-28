@@ -2,6 +2,7 @@ extends Node2D
 class_name Buildable
 
 enum State { INACTIVE, PLACING, ACTIVE } #placed down after dragged, being dragged, unpaused
+const bounce_delay = 0.5
 
 @export var block_type: DataTypes.Blocks = DataTypes.Blocks.None
 var build_mode_enabled = false
@@ -36,9 +37,8 @@ func _ready():
 	# Connect signals based on object type
 	match block_type:
 		DataTypes.Blocks.Mushroom:
-			var bounce_area = get_node_or_null("BounceArea")
+			var bounce_area = get_node_or_null("RigidBody2D/BounceArea")
 			if bounce_area:
-				print("meowmoew")
 				bounce_area.body_entered.connect(_on_bounce_body_entered)
 		DataTypes.Blocks.Bird:
 			
@@ -92,6 +92,11 @@ func _on_bounce_body_entered(b: Node2D):
 	#if state != State.ACTIVE:
 		#return
 	if b is CharacterBody2D:  # could also use b.is_in_group() to filter between players and other obj
+		_delayed_bounce(b)
+		
+func _delayed_bounce(b: CharacterBody2D):
+	await get_tree().create_timer(bounce_delay).timeout
+	if is_instance_valid(b):
 		b.velocity.y = -bounce_force
 
 # ── Bird / Fan ── and b.is_in_group("player")

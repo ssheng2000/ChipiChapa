@@ -4,25 +4,25 @@
 [ext_resource type="Texture2D" uid="uid://d4i57vu4p7j" path="res://icon.svg" id="2_e0au5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0q7t7"]
-size = Vector2(127, 128)
+size = Vector2(127, 24)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8wxru"]
-size = Vector2(156, 21)
+size = Vector2(100, 21)
 
 [node name="Mushroom" unique_id=1191292781 instance=ExtResource("1_0q7t7")]
 scale = Vector2(0.5, 0.5)
-object_type = "mushroom"
-
-[node name="Sprite2D" parent="." index="0" unique_id=823917014]
-texture = ExtResource("2_e0au5")
 
 [node name="CollisionShape2D" parent="RigidBody2D" parent_id_path=PackedInt32Array(582075895) index="0" unique_id=909133432]
 position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_0q7t7")
 
 [node name="BounceArea" type="Area2D" parent="RigidBody2D" parent_id_path=PackedInt32Array(582075895) index="1" unique_id=1810071199]
-collision_layer = 8
+collision_layer = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D/BounceArea" index="0" unique_id=1335594896]
-position = Vector2(0, -65.5)
+position = Vector2(0, -20)
 shape = SubResource("RectangleShape2D_8wxru")
+
+[node name="Sprite2D" parent="RigidBody2D" parent_id_path=PackedInt32Array(582075895) index="2" unique_id=823917014]
+scale = Vector2(1, 0.1875)
+texture = ExtResource("2_e0au5")
