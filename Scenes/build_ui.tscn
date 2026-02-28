@@ -1,13 +1,8 @@
 [gd_scene format=3 uid="uid://dtu2rki4r8aiv"]
 
 [ext_resource type="PackedScene" uid="uid://pandrljuc1t7" path="res://Scenes/builder_panel.tscn" id="1_pxqcr"]
-[ext_resource type="Texture2D" uid="uid://4a1detjnkatl" path="res://Assets/Sprites/build_panel.png" id="2_6wlgu"]
-[ext_resource type="Script" uid="uid://eeew3wajavvl" path="res://Levels/build_panel.gd" id="2_pxqcr"]
 [ext_resource type="Texture2D" uid="uid://d4i57vu4p7j" path="res://icon.svg" id="3_3fwla"]
 [ext_resource type="Script" uid="uid://nxwangety8i2" path="res://Scripts/pause_button.gd" id="4_s1mob"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pxqcr"]
-size = Vector2(1166.75, 159)
 
 [sub_resource type="InputEventKey" id="InputEventKey_6wlgu"]
 keycode = 32
@@ -28,27 +23,6 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer" unique_id=335937944]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-
-[node name="BuildPanel" type="Area2D" parent="MarginContainer/PanelContainer" unique_id=431928682]
-position = Vector2(-11, 70)
-script = ExtResource("2_pxqcr")
-
-[node name="Sprite2D" type="Sprite2D" parent="MarginContainer/PanelContainer/BuildPanel" unique_id=2139088248]
-position = Vector2(15.4999485, 0.9999924)
-scale = Vector2(4.6054683, 3.3541667)
-texture = ExtResource("2_6wlgu")
-metadata/_edit_lock_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MarginContainer/PanelContainer/BuildPanel" unique_id=16600882]
-position = Vector2(12.625, 2)
-shape = SubResource("RectangleShape2D_pxqcr")
-metadata/_edit_lock_ = true
 
 [node name="PauseButton" type="Button" parent="MarginContainer" unique_id=38707815]
 layout_mode = 2

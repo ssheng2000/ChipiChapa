@@ -14,12 +14,13 @@ var pauses_remaining := pauses_amount
 var block_selected: DataTypes.Blocks = DataTypes.Blocks.None
 
 func _ready():
-		GlobalEventBus.pause.connect(_on_pause_requested)
-		GlobalEventBus.unpause.connect(_on_unpause_requested)
-		GlobalEventBus.selected_block.connect(_on_block_select)
-		print("pause button;", pause_button)
-		_set_mode(Mode.RUN)
-		_update_pause_button()
+	print("LEVEL SCENE:", scene_file_path)
+	GlobalEventBus.pause.connect(_on_pause_requested)
+	GlobalEventBus.unpause.connect(_on_unpause_requested)
+	GlobalEventBus.selected_block.connect(_on_block_select)
+	print("pause button;", pause_button)
+	_set_mode(Mode.RUN)
+	_update_pause_button()
 
 func _set_mode(new_mode: Mode):
 		mode = new_mode
@@ -47,15 +48,19 @@ func _update_pause_button():
 				pause_button.set_pauses_remaining(pauses_remaining)
 
 func get_block(block: DataTypes.Blocks) -> int:
+	
 	if block==DataTypes.Blocks.Ice:
+		print("ice block", ice_amount)
 		if ice_amount>0:
 			ice_amount-=1
 			return ice_amount
 	if block==DataTypes.Blocks.Mushroom:
+		print("mushroom block", mushroom_amount)
 		if mushroom_amount>0:
 			mushroom_amount-=1
 			return mushroom_amount
 	if block==DataTypes.Blocks.Bird:
+		print("birdblock", bird_amount)
 		if bird_amount>0:
 			bird_amount-=1
 			return bird_amount
@@ -63,7 +68,9 @@ func get_block(block: DataTypes.Blocks) -> int:
 		
 
 func _on_block_select(block: DataTypes.Blocks) -> void:
+	print("block selected")
 	if mode == Mode.BUILD:
+		print("mode is build")
 		if get_block(block) > 0:
 			block_selected = block
 			print("block_selected", block)

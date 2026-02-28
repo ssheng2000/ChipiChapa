@@ -1,14 +1,13 @@
 extends Node2D
 class_name Buildable
 
-enum State { INACTIVE, PLACING, ACTIVE }
+enum State { INACTIVE, PLACING, ACTIVE } #placed down after dragged, being dragged, unpaused
 
+@export var block_type: DataTypes.Blocks = DataTypes.Blocks.None
+var build_mode_enabled = false
 
 @export var body_path: NodePath = ^"RigidBody2D" 
-@export var number_of_obj: int = 0
-@export var type: String = "block" # block, mushroom, bird
 
-@export var object_type: String = "block"
 @export var bounce_force: float = 600.0
 @export var push_force: float = 300.0
 @export var push_direction: Vector2 = Vector2.RIGHT
@@ -20,19 +19,20 @@ var _bodies_in_wind: Array[Node2D] = []
 @onready var body: Node = get_node_or_null(body_path)
 
 func _ready():
+	GlobalEventBus.block_successfully_selected.connect(_on_block_selected)
 	add_to_group("buildable")
-	process_mode = Node.PROCESS_MODE_ALWAYS # allow dragging while paused
-
+	#process_mode = Node.PROCESS_MODE_ALWAYS # allow dragging while paused
+	
 	GlobalEventBus.build_mode_changed.connect(_on_build_mode_changed)
 
 	# Connect signals based on object type
-	match object_type:
-		"mushroom":
+	match block_type:
+		DataTypes.Blocks.Mushroom:
 			var bounce_area = get_node_or_null("BounceArea")
 			if bounce_area:
 				print("meowmoew")
 				bounce_area.body_entered.connect(_on_bounce_body_entered)
-		"bird":
+		DataTypes.Blocks.Bird:
 			
 			var wind_area = get_node_or_null("RigidBody2D/WindArea")
 			if wind_area:
@@ -43,13 +43,16 @@ func _ready():
 
 func _on_build_mode_changed(enabled: bool):
 	if enabled:
-		_set_state(State.PLACING)
+		build_mode_enabled = true
+		_set_state(State.INACTIVE)
 	elif (not enabled) and state == State.PLACING: #might add check later for state inactive too
+		build_mode_enabled = false
 		_set_state(State.ACTIVE)
 
-func on_left_sidebar(): #sidebar calls this
-	if state == State.INACTIVE:
-		_set_state(State.PLACING)
+func _on_block_selected(block: DataTypes.Blocks):
+	if block_type==block:
+		if build_mode_enabled and state == State.INACTIVE:
+			_set_state(State.PLACING)
 
 func _unhandled_input(event):
 	if state != State.PLACING:
@@ -70,7 +73,7 @@ func _physics_process(delta):
 	_set_state(State.ACTIVE)
 	if state != State.ACTIVE:
 		return
-	if object_type == "bird":
+	if block_type == DataTypes.Blocks.Bird:
 		for b in _bodies_in_wind:
 			if b is CharacterBody2D:
 				b.position += push_direction.normalized() * push_force * delta
@@ -121,9 +124,4 @@ func _set_colliders_disabled(disabled: bool):
 	for n in body.get_children():
 		if n is CollisionShape2D:
 			n.disabled = disabled
-
-#func _on_body_entered(body):
-	#if body == player:
-		#blah
-	#return
-	
+			
