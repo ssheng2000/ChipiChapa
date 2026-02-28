@@ -26,18 +26,21 @@ theme_override_constants/separation = 32
 [node name="IceButton" type="Button" parent="MarginContainer/HBoxContainer" unique_id=656206615]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+focus_mode = 0
 theme_type_variation = &"ToolButton"
 icon = ExtResource("2_yi6qd")
 
 [node name="MushroomButton" type="Button" parent="MarginContainer/HBoxContainer" unique_id=1948884715]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+focus_mode = 0
 theme_type_variation = &"ToolButton"
 icon = ExtResource("2_yi6qd")
 
 [node name="BirdButton" type="Button" parent="MarginContainer/HBoxContainer" unique_id=397237645]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+focus_mode = 0
 theme_type_variation = &"ToolButton"
 icon = ExtResource("2_yi6qd")
 

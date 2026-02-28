@@ -1,5 +1,10 @@
 extends Node2D
 
+@export var instance_parent : Node2D
+@export var scene_ice : PackedScene
+@export var scene_mushroom : PackedScene = preload("res://Scenes/mushroom.tscn")
+@export var scene_bird : PackedScene = preload("res://Scenes/bird.tscn")
+
 @export var pauses_amount := 3
 @export var ice_amount := 0
 @export var mushroom_amount := 0
@@ -14,12 +19,9 @@ var pauses_remaining := pauses_amount
 var block_selected: DataTypes.Blocks = DataTypes.Blocks.None
 
 func _ready():
-	print("LEVEL SCENE:", scene_file_path)
 	GlobalEventBus.pause.connect(_on_pause_requested)
 	GlobalEventBus.unpause.connect(_on_unpause_requested)
 	GlobalEventBus.selected_block.connect(_on_block_select)
-	print("pause button;", pause_button)
-	_set_mode(Mode.RUN)
 	_update_pause_button()
 
 func _set_mode(new_mode: Mode):
@@ -29,50 +31,58 @@ func _set_mode(new_mode: Mode):
 		GlobalEventBus.build_mode_changed.emit(build_enabled)
 
 func _on_pause_requested():
-		if mode == Mode.BUILD:
-				return
-		if pauses_remaining <= 0:
-				return
+	if mode == Mode.BUILD:
+		return
+	if pauses_remaining <= 0:
+		return
 
-		pauses_remaining -= 1
-		_update_pause_button()
-		_set_mode(Mode.BUILD)
+	pauses_remaining -= 1
+	_update_pause_button()
+	_set_mode(Mode.BUILD)
 
 func _on_unpause_requested():
-		if mode == Mode.RUN:
-				return
-		_set_mode(Mode.RUN)
+	if mode == Mode.RUN:
+		return
+	_set_mode(Mode.RUN)
 
 func _update_pause_button():
 		if pause_button and pause_button.has_method("set_pauses_remaining"):
 				pause_button.set_pauses_remaining(pauses_remaining)
 
-func get_block(block: DataTypes.Blocks) -> int:
-	
+func select_block(block: DataTypes.Blocks) -> int:
 	if block==DataTypes.Blocks.Ice:
-		print("ice block", ice_amount)
 		if ice_amount>0:
 			ice_amount-=1
+			block_selected = block
+			try_create_buildable(scene_ice)
+			GlobalEventBus.block_successfully_selected.emit(block)
 			return ice_amount
 	if block==DataTypes.Blocks.Mushroom:
-		print("mushroom block", mushroom_amount)
 		if mushroom_amount>0:
 			mushroom_amount-=1
+			block_selected = block
+			try_create_buildable(scene_mushroom)
+			GlobalEventBus.block_successfully_selected.emit(block)
 			return mushroom_amount
 	if block==DataTypes.Blocks.Bird:
-		print("birdblock", bird_amount)
 		if bird_amount>0:
 			bird_amount-=1
+			block_selected = block
+			try_create_buildable(scene_bird)
+			GlobalEventBus.block_successfully_selected.emit(block)
 			return bird_amount
 	return 0
 		
 
 func _on_block_select(block: DataTypes.Blocks) -> void:
-	print("block selected")
 	if mode == Mode.BUILD:
-		print("mode is build")
-		if get_block(block) > 0:
-			block_selected = block
-			print("block_selected", block)
-			GlobalEventBus.block_successfully_selected.emit(block)
+		select_block(block)
 	return
+
+
+func try_create_buildable(block_source : PackedScene) -> Node2D:
+	var instance: Node2D = block_source.instantiate()
+	instance_parent.add_child(instance)
+	var start_position = instance.get_global_mouse_position()
+	instance.global_position = start_position
+	return instance

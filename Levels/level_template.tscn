@@ -420,8 +420,9 @@ texture = ExtResource("1_x7nqe")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_ng53c")
 
-[node name="Level_Template" type="Node2D" unique_id=824580844]
+[node name="Level_Template" type="Node2D" unique_id=824580844 node_paths=PackedStringArray("instance_parent")]
 script = ExtResource("1_nsw7g")
+instance_parent = NodePath("Buildables")
 
 [node name="TileMap" type="TileMap" parent="." unique_id=1784102515]
 position = Vector2(8, 0)

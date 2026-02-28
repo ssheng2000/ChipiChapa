@@ -12,16 +12,15 @@ var build_mode_enabled = false
 @export var push_force: float = 300.0
 @export var push_direction: Vector2 = Vector2.RIGHT
 
-var state: State = State.ACTIVE
-var dragging := false
+var state: State = State.PLACING
 var _bodies_in_wind: Array[Node2D] = []
 
 @onready var body: Node = get_node_or_null(body_path)
 
 func _ready():
 	GlobalEventBus.block_successfully_selected.connect(_on_block_selected)
-	add_to_group("buildable")
-	#process_mode = Node.PROCESS_MODE_ALWAYS # allow dragging while paused
+	process_mode = Node.PROCESS_MODE_ALWAYS # allow dragging while paused
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
 	GlobalEventBus.build_mode_changed.connect(_on_build_mode_changed)
 
@@ -33,19 +32,22 @@ func _ready():
 				print("meowmoew")
 				bounce_area.body_entered.connect(_on_bounce_body_entered)
 		DataTypes.Blocks.Bird:
-			
 			var wind_area = get_node_or_null("RigidBody2D/WindArea")
 			if wind_area:
 				wind_area.body_entered.connect(_on_wind_body_entered)
 				wind_area.body_exited.connect(_on_wind_body_exited)
 
-	_set_state(State.INACTIVE)
+	_set_state(State.PLACING)
+
+func _process(_delta): 
+	if state == State.PLACING: 
+		global_position = get_global_mouse_position().snapped(Vector2(16, 16))
 
 func _on_build_mode_changed(enabled: bool):
 	if enabled:
 		build_mode_enabled = true
 		_set_state(State.INACTIVE)
-	elif (not enabled) and state == State.PLACING: #might add check later for state inactive too
+	elif (not enabled): #might add check later for state inactive too
 		build_mode_enabled = false
 		_set_state(State.ACTIVE)
 
@@ -55,22 +57,19 @@ func _on_block_selected(block: DataTypes.Blocks):
 			_set_state(State.PLACING)
 
 func _unhandled_input(event):
-	if state != State.PLACING:
+	if state == State.ACTIVE:
 		return
 
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
-			if global_position.distance_to(get_global_mouse_position()) < 32: #arbritrary dist
-				dragging = true
-		else:
-			dragging = false
-
-func _process(_delta):
-	if state == State.PLACING and dragging:
-		global_position = get_global_mouse_position().snapped(Vector2(16, 16))
+			if global_position.distance_to(get_global_mouse_position()) < 10: #arbritrary dist
+				if state == State.PLACING:
+					state = State.INACTIVE
+					return
+				#state is inactive but not placing 
+				state = State.PLACING
 
 func _physics_process(delta):
-	_set_state(State.ACTIVE)
 	if state != State.ACTIVE:
 		return
 	if block_type == DataTypes.Blocks.Bird:
@@ -96,7 +95,6 @@ func _on_wind_body_exited(b: Node2D):
 # ── State management ──
 func _set_state(s: State):
 	state = s
-	dragging = false
 
 	match state:
 		State.INACTIVE:
