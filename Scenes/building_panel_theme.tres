@@ -1,0 +1,54 @@
+[gd_resource type="Theme" format=3 uid="uid://b2milsbmx2j2r"]
+
+[ext_resource type="Texture2D" uid="uid://c186yb8xw5y0o" path="res://Assets/Sprites/Sprite sheet for Basic Pack.png" id="1_2hhqu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jsb0l"]
+atlas = ExtResource("1_2hhqu")
+region = Rect2(201, 105, 30, 30)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6ccbp"]
+texture = SubResource("AtlasTexture_jsb0l")
+texture_margin_top = 3.5049427
+texture_margin_bottom = 1.3684232
+region_rect = Rect2(6.1205673, 2.7701836, 17.992043, 22.394375)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_yvfcd"]
+load_path = "res://.godot/imported/Sprite sheet for Basic Pack.png-e8db386fd145253101c7e37290c3adf2.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u6b7i"]
+atlas = SubResource("CompressedTexture2D_yvfcd")
+region = Rect2(11, 107, 26, 28)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_c676t"]
+texture = SubResource("AtlasTexture_u6b7i")
+texture_margin_left = 3.1918988
+texture_margin_top = 3.0323038
+texture_margin_right = 2.8727088
+texture_margin_bottom = 4.4686584
+region_rect = Rect2(0, 0.7503681, 26.058815, 27.249632)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4fuqe"]
+load_path = "res://.godot/imported/Sprite sheet for Basic Pack.png-e8db386fd145253101c7e37290c3adf2.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5lxgk"]
+atlas = SubResource("CompressedTexture2D_4fuqe")
+region = Rect2(11, 155, 26, 28)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mwq75"]
+texture = SubResource("AtlasTexture_5lxgk")
+texture_margin_left = 3.1918988
+texture_margin_top = 3.0323038
+texture_margin_right = 2.8727088
+texture_margin_bottom = 5.107038
+region_rect = Rect2(0, 0.7503681, 26.058815, 27.249632)
+
+[resource]
+BuildPanel/base_type = &"PanelContainer"
+BuildPanel/styles/panel = SubResource("StyleBoxTexture_6ccbp")
+MarginContainer/constants/margin_bottom = 20
+MarginContainer/constants/margin_left = 20
+MarginContainer/constants/margin_right = 20
+MarginContainer/constants/margin_top = 20
+ToolButton/base_type = &"Button"
+ToolButton/styles/hover = SubResource("StyleBoxTexture_c676t")
+ToolButton/styles/normal = SubResource("StyleBoxTexture_mwq75")

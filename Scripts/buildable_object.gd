@@ -3,7 +3,11 @@ class_name Buildable
 
 enum State { INACTIVE, PLACING, ACTIVE }
 
-@export var body_path: NodePath = ^"RigidBody2D"
+
+@export var body_path: NodePath = ^"RigidBody2D" 
+@export var number_of_obj: int = 0
+@export var type: String = "block" # block, mushroom, bird
+
 @export var object_type: String = "block"
 @export var bounce_force: float = 600.0
 @export var push_force: float = 300.0
@@ -110,11 +114,16 @@ func _enable_physics_and_collisions():
 		body.freeze = false
 		body.sleeping = false
 
+# beeper
 
 func _set_colliders_disabled(disabled: bool):
 	if body == null: return
 	for n in body.get_children():
 		if n is CollisionShape2D:
 			n.disabled = disabled
-	
+
+#func _on_body_entered(body):
+	#if body == player:
+		#blah
+	#return
 	

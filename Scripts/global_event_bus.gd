@@ -9,3 +9,7 @@ signal next_level
 signal restart_level
 
 signal build_mode_changed(enabled,bool)
+
+signal selected_block(block_type: DataTypes.Blocks)
+
+signal block_successfully_selected(block_type: DataTypes.Blocks)
