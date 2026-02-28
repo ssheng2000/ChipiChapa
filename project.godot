@@ -15,9 +15,13 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="ChipiChapa"
-run/main_scene="res://world.tscn"
+run/main_scene="uid://dcdwyd3pwxcbi"
 config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
+
+[autoload]
+
+GlobalEventBus="*uid://caya50lf5v5mc"
 
 [rendering]
 

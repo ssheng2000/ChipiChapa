@@ -1,0 +1,4 @@
+[gd_resource type="Theme" format=3 uid="uid://dj6ieub883x7q"]
+
+[resource]
+BuildPanel/base_type = &"PanelContainer"

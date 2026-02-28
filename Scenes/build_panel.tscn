@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://beco8e106eotb"]
+
+[ext_resource type="Script" uid="uid://nxwangety8i2" path="res://Scripts/pause_button.gd" id="1_4uciv"]
+[ext_resource type="Theme" uid="uid://dj6ieub883x7q" path="res://Scenes/building_theme.tres" id="1_wj4hv"]
+[ext_resource type="Script" uid="uid://eeew3wajavvl" path="res://Levels/sidebar.gd" id="2_wj4hv"]
+[ext_resource type="Texture2D" uid="uid://d4i57vu4p7j" path="res://icon.svg" id="3_v5wb6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ocva3"]
+size = Vector2(84, 248)
+
+[node name="BuildPanel" type="Control" unique_id=44705675]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -540.0
+offset_top = -342.0
+offset_right = -545.0
+offset_bottom = -780.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_wj4hv")
+
+[node name="Control" type="Control" parent="." unique_id=960154031]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
+
+[node name="PauseButton" type="Button" parent="Control" unique_id=366641734]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+script = ExtResource("1_4uciv")
+metadata/_edit_use_anchors_ = true
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1110513740]
+script = ExtResource("2_wj4hv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=968843670]
+position = Vector2(-195, -63)
+shape = SubResource("RectangleShape2D_ocva3")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D" unique_id=1653081374]
+position = Vector2(556, -25)
+scale = Vector2(8.6953125, 1.953125)
+texture = ExtResource("3_v5wb6")
+
+[connection signal="pressed" from="Control/PauseButton" to="Control/PauseButton" method="_on_pressed"]

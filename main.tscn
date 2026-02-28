@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dcdwyd3pwxcbi"]
+
+[ext_resource type="Script" uid="uid://brxj1lnux6d8b" path="res://main.gd" id="1_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://etn6lit8vxiu" path="res://player.tscn" id="3_7mycd"]
+[ext_resource type="PackedScene" uid="uid://24qkhr1a8goe" path="res://Levels/level_1.tscn" id="4_272bh"]
+
+[node name="Main" type="Node2D" unique_id=1856454705]
+script = ExtResource("1_1bvp3")
+levels = Array[PackedScene]([ExtResource("4_272bh")])
+
+[node name="Levels" type="Node2D" parent="." unique_id=1512227688]
+
+[node name="Level_1" parent="Levels" unique_id=824580844 instance=ExtResource("4_272bh")]
+
+[node name="Player" parent="." unique_id=1287424047 instance=ExtResource("3_7mycd")]
+position = Vector2(-116, -19)
