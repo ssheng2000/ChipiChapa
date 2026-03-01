@@ -104,8 +104,11 @@ func _set_zoom(z: float):
 	town.repeat_size.x      = base_w * town_comp
 	
 func play_intro_pan_and_zoom(start_global: Vector2, end_global: Vector2) -> void:
-	if playing_intro:return
-	print("playing")
+	if playing_intro:
+		print("Attempted to start intro pan while already started")
+		return
+
+	print("Start intro pan")
 	playing_intro = true
 	_set_position(start_global)
 	_set_zoom(1.0)
