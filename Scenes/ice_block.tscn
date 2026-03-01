@@ -11,6 +11,7 @@ process_mode = 3
 script = ExtResource("1_qpufp")
 
 [node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=582075895]
+collision_layer = 3
 gravity_scale = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" unique_id=909133432]
