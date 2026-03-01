@@ -63,6 +63,8 @@ func _load_level(i: int):
 	player.move_dir = 1
 	await get_tree().process_frame
 	
+	GlobalEventBus.set_top_controls_visibility.emit(false)
+	
 	camera.player = player
 	camera.bind_parallax(current_level.sky, current_level.clouds, current_level.mountains, current_level.trees, current_level.town)
 	camera.intro_finished.connect(_on_camera_intro_finished, CONNECT_ONE_SHOT)
@@ -100,6 +102,7 @@ func _on_death():
 	return
 	
 func _on_camera_intro_finished():
+	GlobalEventBus.set_top_controls_visibility.emit(true)
 	get_tree().paused = false
 	intro_playing = false
 	return

@@ -6,6 +6,13 @@ extends Control
 
 var selected_block: DataTypes.Blocks = DataTypes.Blocks.None
 
+func _ready():
+	GlobalEventBus.set_top_controls_visibility.connect(_on_control_visibility)
+	visible = false
+
+func _on_control_visibility(v: bool):
+	visible = v
+
 func select_block(block_type: DataTypes.Blocks) -> void:
 	if GlobalEventBus.lock != null:
 		GlobalEventBus.lock.queue_free()

@@ -12,6 +12,8 @@ signal restart_level
 
 signal death
 
+signal set_top_controls_visibility(visible: bool)
+
 #signal intro_finished
 
 signal build_mode_changed(enabled,bool)
