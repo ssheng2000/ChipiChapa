@@ -505,6 +505,7 @@ repeat_times = 2
 texture = ExtResource("7_4autd")
 
 [node name="Mountains" type="Parallax2D" parent="Parallax" unique_id=800845062]
+modulate = Color(0.77210784, 0.8200364, 0.9693003, 1)
 repeat_size = Vector2(256, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax/Mountains" unique_id=1776601975]
