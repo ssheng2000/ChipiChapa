@@ -21,9 +21,15 @@ func _load_level(i: int):
 
 	current_level = levels[i].instantiate()
 	level_container.add_child(current_level)
+	
+	await get_tree().process_frame
+
 
 
 func _on_next_level():
+	print("naur")
+	
+	level_container.remove_child(current_level)
 	level_index += 1
 	_load_level(level_index)
 

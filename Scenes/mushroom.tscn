@@ -10,6 +10,7 @@ size = Vector2(127, 24)
 size = Vector2(100, 21)
 
 [node name="Mushroom" unique_id=1191292781 instance=ExtResource("1_0q7t7")]
+process_mode = 2
 scale = Vector2(0.5, 0.5)
 
 [node name="CollisionShape2D" parent="RigidBody2D" parent_id_path=PackedInt32Array(582075895) index="0" unique_id=909133432]
@@ -24,5 +25,4 @@ position = Vector2(0, -20)
 shape = SubResource("RectangleShape2D_8wxru")
 
 [node name="Sprite2D" parent="RigidBody2D" parent_id_path=PackedInt32Array(582075895) index="2" unique_id=823917014]
-scale = Vector2(1, 0.1875)
 texture = ExtResource("2_e0au5")
