@@ -1,5 +1,7 @@
 extends Node
 
+var lock: Node2D = null # for only choosing one block at a time
+
 signal pause
 
 signal unpause

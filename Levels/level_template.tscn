@@ -463,7 +463,7 @@ instance_parent = NodePath("Buildables")
 scene_ice = ExtResource("2_rbi8j")
 
 [node name="TileMap" type="TileMap" parent="." unique_id=1784102515]
-position = Vector2(8, 0)
+position = Vector2(0, -1)
 tile_set = SubResource("TileSet_raj0s")
 format = 2
 
@@ -495,6 +495,7 @@ repeat_size = Vector2(256, 0)
 repeat_times = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax/Sky" unique_id=814688168]
+position = Vector2(0, 1)
 texture = ExtResource("6_qcxce")
 
 [node name="Clouds" type="Parallax2D" parent="Parallax" unique_id=1200413590]
