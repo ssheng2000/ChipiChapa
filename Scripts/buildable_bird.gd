@@ -17,8 +17,9 @@ var _bodies_in_wind: Array[Node2D] = []
 var _wind_gravity_mag := 0.0
 
 func _ready() -> void:
+	sprite.play("run")
 	super._ready()
-
+	
 	push_direction = Vector2.RIGHT if is_blowing_right else Vector2.LEFT
 
 	if wind_area:

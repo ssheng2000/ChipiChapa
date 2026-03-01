@@ -73,7 +73,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_om1ab")
 }],
 "loop": true,
-"name": &"default",
+"name": &"run",
 "speed": 20.0
 }]
 
@@ -108,7 +108,8 @@ shape = SubResource("RectangleShape2D_cchwj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="RigidBody2D" unique_id=1183284866]
 sprite_frames = SubResource("SpriteFrames_oc6qe")
-frame_progress = 0.138737
+animation = &"run"
+frame_progress = 0.57161117
 
 [node name="WindArea" type="Area2D" parent="RigidBody2D" unique_id=1786720510]
 

@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://dar34ede2v7vu"]
+[gd_scene format=3 uid="uid://bjlk776se1dpw"]
 
 [ext_resource type="Script" uid="uid://conguiundna8h" path="res://Scripts/buildable_mushroom.gd" id="1_tyeof"]
 [ext_resource type="Texture2D" uid="uid://d4i57vu4p7j" path="res://icon.svg" id="2_2xc74"]
