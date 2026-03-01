@@ -51,7 +51,6 @@ animations = [{
 
 [node name="Player" type="CharacterBody2D" unique_id=1287424047]
 script = ExtResource("1_onrkg")
-SPEED = 100.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2071648749]
 position = Vector2(-0.5, -6.5)

@@ -41,6 +41,11 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor():
 		if not _try_step_up(move_dir):
 			move_dir *= -1.0
+			
+	if move_dir > 0:
+		sprite.flip_h = false
+	else:
+		sprite.flip_h = true
 
 
 ## Automatically walk up small steps using test_move().

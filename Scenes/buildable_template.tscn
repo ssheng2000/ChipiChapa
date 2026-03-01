@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://btekrsm1oh5n0"]
 
-[ext_resource type="Script" uid="uid://dtj4x5tlfda2i" path="res://Scripts/buildable_object.gd" id="1_nxqm1"]
+[ext_resource type="Script" uid="uid://q4huwdjit6tw" path="res://Scripts/buildable_base.gd" id="1_nxqm1"]
 
 [node name="Buildable_Template" type="Node2D" unique_id=1191292781]
 process_mode = 3

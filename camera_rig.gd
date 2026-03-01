@@ -8,6 +8,8 @@ signal intro_finished
 
 @export var follow_offset := Vector2(0, -50)
 
+
+
 # These get assigned by bind_parallax() when a level loads
 var sky: Parallax2D
 var clouds: Parallax2D
@@ -158,10 +160,6 @@ func _process(_delta: float) -> void:
 	if playing_intro:
 		return
 		
-	# Follow player in global space + apply our computed intro offset.
-	# If you only want X follow, swap the x line as shown below.
 	global_position = player.global_position + follow_offset + Vector2(0.0, cam_offset_y)
 
-	# X-only follow variant:
-	# global_position.x = player.global_position.x
-	# global_position.y = player.global_position.y + cam_offset_y
+	
