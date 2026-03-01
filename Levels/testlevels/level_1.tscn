@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://24qkhr1a8goe"]
 
 [ext_resource type="PackedScene" uid="uid://cdonasd1xjlnd" path="res://Levels/level_template.tscn" id="1_n0qsc"]
-[ext_resource type="PackedScene" path="res://Scenes/death_spikes.tscn" id="2_dilhk"]
+[ext_resource type="PackedScene" uid="uid://cfwvaka4kicae" path="res://Scenes/death_spikes.tscn" id="2_dilhk"]
 
 [node name="Level_1" unique_id=824580844 instance=ExtResource("1_n0qsc")]
 ice_amount = 5
@@ -20,14 +20,15 @@ position = Vector2(273, -45)
 
 [node name="GPUParticles2D" parent="." index="5" unique_id=855938025]
 position = Vector2(10, -45)
+amount = 300
 
-[node name="Spikes" type="Node2D" parent="." index="6" unique_id=1018923480]
-position = Vector2(-498, -363)
-
-[node name="DeathSpikes" parent="Spikes" index="0" unique_id=1350151346 instance=ExtResource("2_dilhk")]
+[node name="DeathSpikes" parent="Spikes" parent_id_path=PackedInt32Array(126700118) index="0" unique_id=1350151346 instance=ExtResource("2_dilhk")]
 position = Vector2(664, 391)
 
 [node name="Parallax" parent="." index="7" unique_id=545575289]
 light_mask = 0
 visibility_layer = 512
 z_index = -999
+
+[node name="Mountains" parent="Parallax" index="2" unique_id=800845062]
+modulate = Color(1, 1, 1, 1)

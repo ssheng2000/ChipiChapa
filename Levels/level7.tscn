@@ -20,6 +20,7 @@ position = Vector2(-35, 98)
 
 [node name="GPUParticles2D" parent="." index="5" unique_id=855938025]
 position = Vector2(77, -140)
+amount = 300
 
 [node name="Spikes" parent="." index="6" unique_id=126700118]
 position = Vector2(-5, 8)
@@ -29,6 +30,9 @@ position = Vector2(56, 135)
 
 [node name="DeathSpikes2" parent="Spikes" index="1" unique_id=234267675 instance=ExtResource("2_jy6j6")]
 position = Vector2(73, 136)
+
+[node name="Mountains" parent="Parallax" parent_id_path=PackedInt32Array(545575289) index="2" unique_id=800845062]
+modulate = Color(1, 1, 1, 1)
 
 [node name="LootBox" parent="." index="8" unique_id=1391872162 instance=ExtResource("3_bbmyx")]
 position = Vector2(261, 77)
