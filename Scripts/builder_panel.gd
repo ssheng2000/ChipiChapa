@@ -7,6 +7,9 @@ extends Control
 var selected_block: DataTypes.Blocks = DataTypes.Blocks.None
 
 func select_block(block_type: DataTypes.Blocks) -> void:
+	if GlobalEventBus.lock != null:
+		GlobalEventBus.lock.queue_free()
+		
 	GlobalEventBus.selected_block.emit(block_type)
 	selected_block = block_type
 	

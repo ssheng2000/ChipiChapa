@@ -87,11 +87,28 @@ func _physics_process(delta: float) -> void:
 	_on_active_physics_process(delta)
 
 # --- State management ---
+#func _set_state(s: State) -> void:
+	#state = s
+	#match state:
+		#State.INACTIVE, State.PLACING:
+			#_disable_physics_and_collisions()
+		#State.ACTIVE:
+			#_enable_physics_and_collisions()
+	
 func _set_state(s: State) -> void:
 	state = s
 	match state:
-		State.INACTIVE, State.PLACING:
+		State.PLACING:
+			# TAKE THE LOCK: Tell the global system THIS is the active ghost
+			GlobalEventBus.lock = self
 			_disable_physics_and_collisions()
+		
+		State.INACTIVE:
+			# RELEASE THE LOCK: Only if this specific block was holding it
+			if GlobalEventBus.lock == self:
+				GlobalEventBus.lock = null
+			_disable_physics_and_collisions()
+			
 		State.ACTIVE:
 			_enable_physics_and_collisions()
 
