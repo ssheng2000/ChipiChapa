@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://daj6p0eoi2vbq"
-path="res://.godot/imported/mountains.png-5bfe560efdb0a85e25560682bc79ad93.ctex"
+uid="uid://c46gw4h2bieo"
+path="res://.godot/imported/trees.png-292505d52c99d2cbf162ad8a71853d41.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/mountains.png"
-dest_files=["res://.godot/imported/mountains.png-5bfe560efdb0a85e25560682bc79ad93.ctex"]
+source_file="res://Assets/Sprites/Background/trees.png"
+dest_files=["res://.godot/imported/trees.png-292505d52c99d2cbf162ad8a71853d41.ctex"]
 
 [params]
 
