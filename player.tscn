@@ -1,21 +1,66 @@
 [gd_scene format=3 uid="uid://b8eo4gkb6tpip"]
 
-[ext_resource type="Texture2D" uid="uid://d4i57vu4p7j" path="res://icon.svg" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://b5ja27jj0o7hn" path="res://Scripts/player.gd" id="1_onrkg"]
+[ext_resource type="Texture2D" uid="uid://bdixj36v8kvke" path="res://Assets/Sprites/Chipi/chipi_run.png" id="2_onrkg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
-size = Vector2(64, 109)
+size = Vector2(9, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3pqv"]
+atlas = ExtResource("2_onrkg")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hqtel"]
+atlas = ExtResource("2_onrkg")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sweqy"]
+atlas = ExtResource("2_onrkg")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2hs0m"]
+atlas = ExtResource("2_onrkg")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1jxqw"]
+atlas = ExtResource("2_onrkg")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dw050"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i3pqv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hqtel")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sweqy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2hs0m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1jxqw")
+}],
+"loop": true,
+"name": &"run",
+"speed": 10.0
+}]
 
 [node name="Player" type="CharacterBody2D" unique_id=1287424047]
 script = ExtResource("1_onrkg")
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=342293803]
-position = Vector2(-1.9073486e-06, -54)
-scale = Vector2(0.5, 0.8515625)
-texture = ExtResource("1_4flbx")
+SPEED = 100.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2071648749]
-position = Vector2(0, -54.5)
+position = Vector2(-0.5, -6.5)
 shape = SubResource("RectangleShape2D_onrkg")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=751537706]
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=592716186]
+position = Vector2(0, -7)
+sprite_frames = SubResource("SpriteFrames_dw050")
+animation = &"run"
+frame_progress = 0.20752934

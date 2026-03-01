@@ -1,10 +1,25 @@
 [gd_scene format=3 uid="uid://bp3mjpokd8os"]
 
-[ext_resource type="PackedScene" uid="uid://btekrsm1oh5n0" path="res://Scenes/buildable_template.tscn" id="1_crnqq"]
+[ext_resource type="Script" uid="uid://dtj4x5tlfda2i" path="res://Scripts/buildable_object.gd" id="1_mcegt"]
 [ext_resource type="Texture2D" uid="uid://clhk4vfs8gv4b" path="res://Assets/Sprites/Items/duck.png" id="2_mcegt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6ljjq"]
 size = Vector2(124, 64)
+
+[sub_resource type="Gradient" id="Gradient_mcegt"]
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_dnvpi"]
+gradient = SubResource("Gradient_mcegt")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vl8r2"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(20, 30, 1)
+gravity = Vector3(90, 0, 0)
+linear_accel_min = -2.2351742e-06
+linear_accel_max = 4.9999976
+color_ramp = SubResource("GradientTexture1D_dnvpi")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cchwj"]
 size = Vector2(64, 64)
@@ -80,22 +95,35 @@ animations = [{
 "speed": 20.0
 }]
 
-[node name="Bird" unique_id=1191292781 instance=ExtResource("1_crnqq")]
-process_mode = 0
+[node name="Bird" type="Node2D" unique_id=1191292781]
+script = ExtResource("1_mcegt")
 is_blowing_right = true
 
-[node name="WindArea" type="Area2D" parent="RigidBody2D" parent_id_path=PackedInt32Array(582075895) index="0" unique_id=1786720510]
+[node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=582075895]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D/WindArea" index="0" unique_id=277479711]
+[node name="WindArea" type="Area2D" parent="RigidBody2D" unique_id=1786720510]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D/WindArea" unique_id=277479711]
 position = Vector2(94, 0)
 shape = SubResource("RectangleShape2D_6ljjq")
 
-[node name="CollisionShape2D" parent="RigidBody2D" parent_id_path=PackedInt32Array(582075895) index="1" unique_id=909133432]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="RigidBody2D/WindArea" unique_id=86337174]
+position = Vector2(9, 0)
+amount = 10
+lifetime = 2.0
+preprocess = 3.0
+speed_scale = 1.3
+randomness = 1.0
+trail_enabled = true
+trail_lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_vl8r2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" unique_id=909133432]
 shape = SubResource("RectangleShape2D_cchwj")
 
-[node name="Sprite2D" parent="RigidBody2D" parent_id_path=PackedInt32Array(582075895) index="2" unique_id=823917014]
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D" unique_id=823917014]
 scale = Vector2(0.5, 0.5)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="RigidBody2D" parent_id_path=PackedInt32Array(582075895) index="3" unique_id=1183284866]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="RigidBody2D" unique_id=1183284866]
 sprite_frames = SubResource("SpriteFrames_oc6qe")
 frame_progress = 0.138737

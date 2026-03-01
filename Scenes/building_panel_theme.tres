@@ -1,13 +1,6 @@
 [gd_resource type="Theme" format=3 uid="uid://b2milsbmx2j2r"]
 
-[ext_resource type="Texture2D" uid="uid://c186yb8xw5y0o" path="res://Assets/Sprites/Sprite sheet for Basic Pack.png" id="1_2hhqu"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jsb0l"]
-atlas = ExtResource("1_2hhqu")
-region = Rect2(201, 105, 30, 30)
-
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6ccbp"]
-texture = SubResource("AtlasTexture_jsb0l")
 texture_margin_top = 3.5049427
 texture_margin_bottom = 1.3684232
 region_rect = Rect2(6.1205673, 2.7701836, 17.992043, 22.394375)
