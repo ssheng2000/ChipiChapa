@@ -2,11 +2,11 @@ extends CharacterBody2D
 
 @onready var sprite = $Sprite2D
 
-@export var SPEED = 300.0
+var SPEED = 100.0
 const JUMP_VELOCITY = -400.0
 
 ## Step climbing settings
-const MAX_STEP_HEIGHT := 100.0  # Max ledge height (pixels) the player can walk up
+const MAX_STEP_HEIGHT := 20.0  # Max ledge height (pixels) the player can walk up
 
 ## The character always moves. Arrow keys flip the direction.
 var move_dir := 1.0  # 1.0 = right, -1.0 = left
@@ -22,14 +22,14 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 
 	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-
-	# Change direction on key press (not held – just the tap).
-	if Input.is_action_just_pressed("ui_right"):
-		move_dir = 1.0
-	elif Input.is_action_just_pressed("ui_left"):
-		move_dir = -1.0
+	#if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+		#velocity.y = JUMP_VELOCITY
+#
+	## Change direction on key press (not held – just the tap).
+	#if Input.is_action_just_pressed("ui_right"):
+		#move_dir = 1.0
+	#elif Input.is_action_just_pressed("ui_left"):
+		#move_dir = -1.0
 
 	# Always move in the current direction.
 	velocity.x = move_dir * SPEED

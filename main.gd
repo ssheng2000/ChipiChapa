@@ -21,6 +21,8 @@ var restarting = false
 var cutscene_index := 0
 var current_cutscene: Node = null
 
+var intro_playing = true
+
 
 
 func _ready():
@@ -35,6 +37,7 @@ func _ready():
 func _load_level(i: int):
 	print("rah")
 	get_tree().paused = true
+	intro_playing = true
 	if not restarting:
 		if (i==0):
 			easy_music.play()
@@ -58,7 +61,9 @@ func _load_level(i: int):
 	camera.player = player
 	camera.bind_parallax(current_level.sky, current_level.clouds, current_level.mountains, current_level.trees, current_level.town)
 	camera.intro_finished.connect(_on_camera_intro_finished, CONNECT_ONE_SHOT)
-	camera.play_intro()
+	#camera.play_linear_intro(current_level.find_child("Player_Start_Pos").global_position, current_level.find_child("Goal_Flag").global_position)
+	camera.play_intro_pan_and_zoom(current_level.find_child("Player_Start_Pos").global_position, current_level.find_child("Goal_Flag").global_position)
+	
 
 
 func _on_next_level():
@@ -85,4 +90,10 @@ func _on_death():
 	
 func _on_camera_intro_finished():
 	get_tree().paused = false
+	intro_playing = false
 	return
+
+func _unhandled_input(event):
+	if event.is_action_pressed("restart"):
+		if not intro_playing:
+			GlobalEventBus.restart_level.emit()

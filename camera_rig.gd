@@ -107,10 +107,57 @@ func _apply_zoom(z: float) -> void:
 	trees.repeat_size.x     = base_w * trees_comp
 	town.repeat_size.x      = base_w * town_comp
 
+func play_linear_intro(start_global: Vector2, end_global: Vector2, duration := 2.0) -> void:
+	playing_intro = true
+	global_position = start_global
+
+	var tween := create_tween()
+	tween.set_ease(Tween.EASE_IN_OUT)
+	tween.set_trans(Tween.TRANS_SINE)
+
+	# Go start → end
+	tween.tween_property(self, "global_position", end_global, duration)
+
+	# Then end → start
+	tween.tween_property(self, "global_position", start_global, duration)
+
+	tween.finished.connect(func():
+		playing_intro = false
+		intro_finished.emit()
+	)
+
+func play_intro_pan_and_zoom(start_global: Vector2, end_global: Vector2) -> void:
+	playing_intro = true
+	global_position = start_global
+	_apply_zoom(1.0)
+
+	var tween := create_tween()
+	tween.set_ease(Tween.EASE_IN_OUT)
+	tween.set_trans(Tween.TRANS_SINE)
+
+	# --- Track A: camera pan (sequential) ---
+	tween.tween_property(self, "global_position", end_global, 2.0)
+	tween.tween_interval(0.5)
+	tween.tween_property(self, "global_position", start_global, 2.0)
+
+	# --- Track B: zoom (parallel to the whole sequence above) ---
+	var z := tween.parallel()
+	z.tween_method(_apply_zoom, 1.0, 0.5, 2.0)
+	z.tween_interval(0.5)
+	z.tween_method(_apply_zoom, 0.5, 1.0, 2.0)
+
+	tween.finished.connect(func():
+		playing_intro = false
+		intro_finished.emit()
+	)
+
 func _process(_delta: float) -> void:
 	if not player:
 		return
-
+		
+	if playing_intro:
+		return
+		
 	# Follow player in global space + apply our computed intro offset.
 	# If you only want X follow, swap the x line as shown below.
 	global_position = player.global_position + follow_offset + Vector2(0.0, cam_offset_y)
