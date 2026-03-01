@@ -19,7 +19,7 @@ position = Vector2(-112, 64)
 position = Vector2(273, -45)
 
 [node name="GPUParticles2D" parent="." index="5" unique_id=855938025]
-position = Vector2(10, -160)
+position = Vector2(10, -45)
 
 [node name="Spikes" type="Node2D" parent="." index="6" unique_id=1018923480]
 position = Vector2(-498, -363)
