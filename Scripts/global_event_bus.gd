@@ -10,6 +10,8 @@ signal restart_level
 
 signal death
 
+#signal intro_finished
+
 signal build_mode_changed(enabled,bool)
 
 signal selected_block(block_type: DataTypes.Blocks)

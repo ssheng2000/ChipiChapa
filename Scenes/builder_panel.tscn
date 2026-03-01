@@ -3,58 +3,80 @@
 [ext_resource type="Theme" uid="uid://b2milsbmx2j2r" path="res://Scenes/building_panel_theme.tres" id="1_klx4j"]
 [ext_resource type="Script" uid="uid://dxw7omfli1goh" path="res://Scripts/builder_panel.gd" id="2_j3ka1"]
 [ext_resource type="Texture2D" uid="uid://ccvgdfsveyx1r" path="res://Assets/Sprites/Icons/stone_icon.png" id="3_kial3"]
-[ext_resource type="Script" uid="uid://df8bcg7h4tvgl" path="res://Scenes/ice_button.gd" id="4_7gu3p"]
+[ext_resource type="Texture2D" uid="uid://bk7ofk713ak68" path="res://Assets/Sprites/Icons/mushroom_icon_dark.png" id="3_ykb4e"]
+[ext_resource type="Texture2D" uid="uid://dm5da1org3avr" path="res://Assets/Sprites/Icons/mushroom_icon_light.png" id="4_3c4n6"]
 [ext_resource type="Texture2D" uid="uid://deptal1224wg1" path="res://Assets/Sprites/Icons/mushroom_icon.png" id="4_ntilp"]
 [ext_resource type="Texture2D" uid="uid://bdd32u6xv2nm2" path="res://Assets/Sprites/Icons/duck_icon.png" id="4_p4rq0"]
+[ext_resource type="Texture2D" uid="uid://dlvbauvbpaii1" path="res://Assets/Sprites/Icons/duck_icon_dark.png" id="6_pwiam"]
+[ext_resource type="Texture2D" uid="uid://dycch50onrx78" path="res://Assets/Sprites/Icons/duck_icon_light.png" id="7_kurph"]
+[ext_resource type="Texture2D" uid="uid://c63g2ij17c7dq" path="res://Assets/Sprites/Icons/stone_icon_dark.png" id="9_y76ym"]
+[ext_resource type="Texture2D" uid="uid://b6scuafbovudc" path="res://Assets/Sprites/Icons/stone_icon_light.png" id="10_6jbxl"]
 
-[node name="Builder_Panel" type="PanelContainer" unique_id=2013814623]
+[node name="Builder_Panel" type="Control" unique_id=308017094]
 process_mode = 3
-offset_right = 142.0
-offset_bottom = 98.87337
-theme = ExtResource("1_klx4j")
+layout_mode = 3
+anchors_preset = 0
 theme_type_variation = &"BuildPanel"
 script = ExtResource("2_j3ka1")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1320365498]
-layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
+layout_mode = 1
+offset_right = 84.0
+offset_bottom = 35.0
+theme = ExtResource("1_klx4j")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=212189973]
 layout_mode = 2
-theme_override_constants/separation = 0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/separation = 5
 
-[node name="IceButton" type="Button" parent="MarginContainer/HBoxContainer" unique_id=656206615]
-custom_minimum_size = Vector2(16, 64)
+[node name="MushroomButton" type="TextureButton" parent="MarginContainer/HBoxContainer" unique_id=935287193]
+clip_contents = true
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 focus_mode = 0
-theme_type_variation = &"ToolButton"
+texture_normal = ExtResource("4_ntilp")
+texture_pressed = ExtResource("3_ykb4e")
+texture_hover = ExtResource("4_3c4n6")
+
+[node name="BirdButton" type="TextureButton" parent="MarginContainer/HBoxContainer" unique_id=1742545200]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 0
+texture_normal = ExtResource("4_p4rq0")
+texture_pressed = ExtResource("6_pwiam")
+texture_hover = ExtResource("7_kurph")
+
+[node name="IceButton" type="TextureButton" parent="MarginContainer/HBoxContainer" unique_id=418063793]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 0
+button_mask = 3
+texture_normal = ExtResource("3_kial3")
+texture_pressed = ExtResource("9_y76ym")
+texture_hover = ExtResource("10_6jbxl")
+
+[node name="MarginContainer2" type="MarginContainer" parent="." unique_id=2068998570]
+visible = false
+layout_mode = 1
+offset_right = 36.0
+offset_bottom = 43.0
+
+[node name="IceButton" type="Button" parent="MarginContainer2" unique_id=1704835365]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 0
+button_mask = 3
 icon = ExtResource("3_kial3")
 flat = true
 icon_alignment = 1
-script = ExtResource("4_7gu3p")
 
-[node name="MushroomButton" type="Button" parent="MarginContainer/HBoxContainer" unique_id=1948884715]
-clip_contents = true
-custom_minimum_size = Vector2(16, 40)
-layout_mode = 2
-focus_mode = 0
-theme_type_variation = &"ToolButton"
-icon = ExtResource("4_ntilp")
-flat = true
-icon_alignment = 1
-
-[node name="BirdButton" type="Button" parent="MarginContainer/HBoxContainer" unique_id=397237645]
-custom_minimum_size = Vector2(16, 64)
-layout_mode = 2
-focus_mode = 0
-theme_type_variation = &"ToolButton"
-icon = ExtResource("4_p4rq0")
-flat = true
-icon_alignment = 1
-
-[connection signal="pressed" from="MarginContainer/HBoxContainer/IceButton" to="." method="_on_ice_button_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/MushroomButton" to="." method="_on_mushroom_button_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/BirdButton" to="." method="_on_bird_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/IceButton" to="." method="_on_ice_button_pressed"]

@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://d2tydyehd6krn" path="res://Assets/Music/level2.mp3" id="6_5vw27"]
 [ext_resource type="Script" uid="uid://bga151as5ycs" path="res://music.gd" id="6_kek77"]
 [ext_resource type="AudioStream" uid="uid://bfo1uslb5pugd" path="res://Assets/Music/level3.mp3" id="7_kek77"]
+[ext_resource type="Script" uid="uid://bkakia5xcj0lb" path="res://camera_rig.gd" id="9_kek77"]
 
 [node name="Main" type="Node2D" unique_id=1856454705]
 script = ExtResource("1_1bvp3")
@@ -45,3 +46,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1646995828]
+process_mode = 3
+script = ExtResource("9_kek77")

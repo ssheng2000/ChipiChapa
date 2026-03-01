@@ -5,6 +5,11 @@
 [ext_resource type="PackedScene" uid="uid://j5g1e7ulynug" path="res://Scenes/ice_block.tscn" id="2_rbi8j"]
 [ext_resource type="PackedScene" uid="uid://j080tjxnmxwr" path="res://Scenes/goal_flag.tscn" id="4_rbi8j"]
 [ext_resource type="PackedScene" uid="uid://dtu2rki4r8aiv" path="res://Scenes/build_ui.tscn" id="4_sjjkl"]
+[ext_resource type="Texture2D" uid="uid://bfcea6l5a76xp" path="res://Assets/Sprites/Background/sky.png" id="6_qcxce"]
+[ext_resource type="Texture2D" uid="uid://byabfi70k7axt" path="res://Assets/Sprites/Background/long_cloud.png" id="7_4autd"]
+[ext_resource type="Texture2D" uid="uid://daj6p0eoi2vbq" path="res://Assets/Sprites/Background/long_mountains.png" id="8_2i2tq"]
+[ext_resource type="Texture2D" uid="uid://c46gw4h2bieo" path="res://Assets/Sprites/Background/trees.png" id="9_43g2l"]
+[ext_resource type="Texture2D" uid="uid://cjcetg2fvl71r" path="res://Assets/Sprites/Background/town.png" id="10_862ii"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ng53c"]
 texture = ExtResource("1_x7nqe")
@@ -479,3 +484,45 @@ lifetime = 8.0
 preprocess = 30.0
 randomness = 0.21
 process_material = SubResource("ParticleProcessMaterial_02uie")
+
+[node name="Parallax" type="Node2D" parent="." unique_id=545575289]
+position = Vector2(140, 71)
+
+[node name="Sky" type="Parallax2D" parent="Parallax" unique_id=1914561234]
+scroll_scale = Vector2(0, 1)
+repeat_size = Vector2(256, 0)
+repeat_times = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax/Sky" unique_id=814688168]
+texture = ExtResource("6_qcxce")
+
+[node name="Clouds" type="Parallax2D" parent="Parallax" unique_id=1200413590]
+scroll_scale = Vector2(0.02, 1)
+repeat_size = Vector2(256, 0)
+repeat_times = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax/Clouds" unique_id=1538419084]
+texture = ExtResource("7_4autd")
+
+[node name="Mountains" type="Parallax2D" parent="Parallax" unique_id=800845062]
+scroll_scale = Vector2(0.05, 1)
+repeat_size = Vector2(256, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax/Mountains" unique_id=1776601975]
+texture = ExtResource("8_2i2tq")
+
+[node name="Trees" type="Parallax2D" parent="Parallax" unique_id=778867735]
+scroll_scale = Vector2(0.2, 1)
+repeat_size = Vector2(256, 0)
+repeat_times = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax/Trees" unique_id=1689681276]
+texture = ExtResource("9_43g2l")
+
+[node name="Town" type="Parallax2D" parent="Parallax" unique_id=584761409]
+scroll_scale = Vector2(0.3, 1)
+repeat_size = Vector2(256, 0)
+repeat_times = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax/Town" unique_id=1448118385]
+texture = ExtResource("10_862ii")

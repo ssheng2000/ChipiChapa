@@ -10,6 +10,13 @@ extends Node2D
 @export var mushroom_amount := 0
 @export var bird_amount := 0
 
+# Parallax things exposed
+@onready var sky: Parallax2D = $Parallax/Sky
+@onready var clouds: Parallax2D = $Parallax/Clouds
+@onready var mountains: Parallax2D = $Parallax/Mountains
+@onready var trees: Parallax2D = $Parallax/Trees
+@onready var town: Parallax2D = $Parallax/Town
+
 enum Mode { RUN, BUILD }
 
 @onready var pause_button := $Build_UI/MarginContainer/PauseButton

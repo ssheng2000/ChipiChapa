@@ -12,6 +12,7 @@ enum Mode { RUN, BUILD }
 @onready var hard_music = $Music/HardMusic
 
 @onready var player := $Player
+@onready var camera := $Camera2D
 
 var level_index := 0
 var current_level: Node = null
@@ -26,14 +27,14 @@ func _ready():
 	GlobalEventBus.next_level.connect(_on_next_level)
 	GlobalEventBus.restart_level.connect(_on_restart_level)
 	GlobalEventBus.death.connect(_on_death)
+	#GlobalEventBus.intro_finished.connect(_on_intro_finished)
 	player.hide()
 	_load_cutscene(0)
 	_load_level(0)
 
 func _load_level(i: int):
-	
-	
-	
+	print("rah")
+	get_tree().paused = true
 	if not restarting:
 		if (i==0):
 			easy_music.play()
@@ -53,6 +54,11 @@ func _load_level(i: int):
 	player.global_position = start_pos.global_position
 	player.show()
 	await get_tree().process_frame
+	
+	camera.player = player
+	camera.bind_parallax(current_level.sky, current_level.clouds, current_level.mountains, current_level.trees, current_level.town)
+	camera.intro_finished.connect(_on_camera_intro_finished, CONNECT_ONE_SHOT)
+	camera.play_intro()
 
 
 func _on_next_level():
@@ -75,4 +81,8 @@ func _load_cutscene(i: int):
 	
 func _on_death():
 	GlobalEventBus.restart_level.emit()
+	return
+	
+func _on_camera_intro_finished():
+	get_tree().paused = false
 	return

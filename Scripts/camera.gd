@@ -72,3 +72,4 @@ func _apply_zoom(z: float) -> void:
 func _process(delta: float) -> void:
 	if player:
 		position.x = player.position.x
+		position.y = player.position.y
