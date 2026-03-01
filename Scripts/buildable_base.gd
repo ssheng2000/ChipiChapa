@@ -10,7 +10,8 @@ var build_mode_enabled := false
 var state: State = State.PLACING
 
 @onready var body: Node = get_node_or_null(body_path)
-@onready var tilemap: TileMap = get_tree().current_scene.find_child("TileMap")
+#@onready var tilemap: TileMap = get_tree().current_scene.find_child("TileMap")
+@onready var tilemap: TileMap = get_node("../../TileMap")
 
 func _is_position_valid(pos: Vector2) -> bool:
 	if not tilemap:
@@ -69,7 +70,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		if global_position.distance_to(get_global_mouse_position()) < 10:
 			# Toggle placing <-> inactive
 			if state == State.PLACING:
-				_set_state(State.INACTIVE)
+			# Only place if the tile is empty!
+				if _is_position_valid(global_position):
+					_set_state(State.INACTIVE)
+					modulate = Color.WHITE # removes the red, white does nothing
 			else:
 				_set_state(State.PLACING)
 
