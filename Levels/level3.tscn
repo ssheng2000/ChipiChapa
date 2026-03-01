@@ -3,6 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://cdonasd1xjlnd" path="res://Levels/level_template.tscn" id="1_06yxo"]
 [ext_resource type="PackedScene" uid="uid://blfhy8oh4xkip" path="res://Scenes/loot_box.tscn" id="2_2385j"]
 [ext_resource type="PackedScene" path="res://Scenes/death_spikes.tscn" id="2_c5oim"]
+[ext_resource type="Texture2D" uid="uid://bs3qc530p74rc" path="res://Assets/Sprites/Objects/tree1.png" id="4_vr4rd"]
+[ext_resource type="Texture2D" uid="uid://boa0ay8kqmjow" path="res://Assets/Sprites/Objects/snowman.png" id="5_eex2w"]
 
 [node name="level3" unique_id=824580844 instance=ExtResource("1_06yxo")]
 ice_amount = 1
@@ -56,3 +58,11 @@ scale = Vector2(20, 1)
 [node name="LootBox" parent="." index="8" unique_id=1391872162 instance=ExtResource("2_2385j")]
 position = Vector2(206, 21)
 added_birds = 1
+
+[node name="Tree1" type="Sprite2D" parent="." index="9" unique_id=1246217404]
+position = Vector2(402, -35)
+texture = ExtResource("4_vr4rd")
+
+[node name="Snowman" type="Sprite2D" parent="." index="10" unique_id=1190167172]
+position = Vector2(184, 17)
+texture = ExtResource("5_eex2w")
