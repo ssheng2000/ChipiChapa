@@ -102,9 +102,6 @@ lock_rotation = true
 position = Vector2(0, 7.125)
 shape = SubResource("RectangleShape2D_0q7t7")
 
-[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D" unique_id=823917014]
-texture = ExtResource("3_c6w58")
-
 [node name="Unused" type="Area2D" parent="RigidBody2D" unique_id=1208513133]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D/Unused" unique_id=915428628]
