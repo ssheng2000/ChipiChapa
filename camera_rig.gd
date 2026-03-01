@@ -8,6 +8,8 @@ signal intro_finished
 
 @export var follow_offset := Vector2(0, -50)
 
+const CLOUD_SCROLL_SPEED = 10.0 # Adjust this number for faster/slower clouds
+var cloud_offset_x: float = 0.0
 
 # These get assigned by bind_parallax() when a level loads
 var sky: Parallax2D
@@ -52,17 +54,22 @@ func _set_position(pos: Vector2):
 	
 	var screen_h = get_viewport_rect().size.y
 	
+	if clouds:
+		clouds.get_child(0).position.x = pos.x * (1 - CLOUDS_INFLUENCE)
+		# CHANGE THIS LINE: repeat_offset -> scroll_offset
+		clouds.scroll_offset.x = cloud_offset_x
+		
 	sky.get_child(0).position.x       = pos.x * (1-SKY_INFLUENCE)
 	clouds.get_child(0).position.x    = pos.x * (1-CLOUDS_INFLUENCE)
 	mountains.get_child(0).position.x = pos.x * (1-MOUNTAINS_INFLUENCE)
 	trees.get_child(0).position.x     = pos.x * (1-TREES_INFLUENCE)
 	town.get_child(0).position.x      = pos.x * (1-TOWN_INFLUENCE)
 	
-	sky.get_child(0).position.y       = pos.y - screen_h * current_zoom / 2
-	clouds.get_child(0).position.y    = pos.y - screen_h * current_zoom / 2
-	mountains.get_child(0).position.y = pos.y - screen_h * current_zoom / 2
-	trees.get_child(0).position.y     = pos.y - screen_h * current_zoom / 2
-	town.get_child(0).position.y      = pos.y - screen_h * current_zoom / 2
+	sky.get_child(0).position.y       = pos.y - screen_h / 2
+	clouds.get_child(0).position.y    = pos.y - screen_h / 2
+	mountains.get_child(0).position.y = pos.y - screen_h / 2
+	trees.get_child(0).position.y     = pos.y - screen_h / 2
+	town.get_child(0).position.y      = pos.y - screen_h / 2
 
 func _set_zoom(z: float):
 	zoom = Vector2(z, z)
@@ -122,6 +129,12 @@ func play_intro_pan_and_zoom(start_global: Vector2, end_global: Vector2) -> void
 	)
 
 func _process(_delta: float) -> void:
+	cloud_offset_x += CLOUD_SCROLL_SPEED * _delta
+	
+	if clouds:
+		# CHANGED: repeat_offset -> scroll_offset
+		clouds.scroll_offset.x = cloud_offset_x
+		
 	if not player:
 		return
 		
