@@ -19,3 +19,6 @@ position = Vector2(635, 454)
 added_ice = 3
 added_mushrooms = 1
 added_birds = 2
+
+[node name="GPUParticles2D" parent="." index="6" unique_id=855938025]
+position = Vector2(100, -33)
