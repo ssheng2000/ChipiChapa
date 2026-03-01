@@ -13,6 +13,7 @@ var state: State = State.PLACING
 #@onready var tilemap: TileMap = get_tree().current_scene.find_child("TileMap")
 @onready var tilemap: TileMap = get_node("../../TileMap")
 
+
 func _is_position_valid(pos: Vector2) -> bool:
 	if not tilemap:
 		return true # Default to true if no tilemap found
@@ -73,6 +74,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			# Only place if the tile is empty!
 				if _is_position_valid(global_position):
 					_set_state(State.INACTIVE)
+					GlobalEventBus.placed_block.emit()
 					modulate = Color.WHITE # removes the red, white does nothing
 			else:
 				_set_state(State.PLACING)
