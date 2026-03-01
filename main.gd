@@ -56,6 +56,8 @@ func _load_level(i: int):
 	var start_pos = current_level.find_child("Player_Start_Pos")
 	player.global_position = start_pos.global_position
 	player.show()
+	player.sprite.flip_h = false
+	player.move_dir = 1
 	await get_tree().process_frame
 	
 	camera.player = player

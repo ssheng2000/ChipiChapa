@@ -91,7 +91,6 @@ animations = [{
 [node name="Mushroom" type="Node2D" unique_id=1191292781]
 process_mode = 2
 script = ExtResource("1_0q7t7")
-bounce_force = 180.0
 
 [node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=582075895]
 collision_layer = 2

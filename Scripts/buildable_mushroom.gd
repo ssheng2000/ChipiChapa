@@ -3,7 +3,7 @@ class_name BuildableMushroom
 
 enum MushState { IDLE, CHARGED, BOUNCING }
 
-@export var bounce_force: float = 600.0
+@export var bounce_force: float = 360.0
 
 var mush_state = MushState.IDLE
 
