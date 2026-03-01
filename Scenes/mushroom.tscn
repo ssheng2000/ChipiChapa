@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dar34ede2v7vu"]
 
-[ext_resource type="Script" path="res://Scripts/buildable_object.gd" id="1_0q7t7"]
-[ext_resource type="Texture2D" uid="uid://d4i57vu4p7j" path="res://icon.svg" id="2_e0au5"]
+[ext_resource type="Script" uid="uid://dtj4x5tlfda2i" path="res://Scripts/buildable_object.gd" id="1_0q7t7"]
+[ext_resource type="Texture2D" uid="uid://b4s5m4iwooyn7" path="res://Assets/Sprites/Items/Mushroom/mushroom_idle.png" id="2_0q7t7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0q7t7"]
 size = Vector2(127, 24)
@@ -28,4 +28,4 @@ position = Vector2(0, -20)
 shape = SubResource("RectangleShape2D_8wxru")
 
 [node name="Sprite2D" type="Sprite2D" parent="RigidBody2D" unique_id=823917014]
-texture = ExtResource("2_e0au5")
+texture = ExtResource("2_0q7t7")

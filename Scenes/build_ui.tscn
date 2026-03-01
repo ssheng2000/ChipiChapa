@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b2l285l52mou8" path="res://Assets/Sprites/Icons/pause_icon_dark.png" id="4_3fwla"]
 [ext_resource type="Script" uid="uid://nxwangety8i2" path="res://Scripts/pause_button.gd" id="4_s1mob"]
 [ext_resource type="Texture2D" uid="uid://cpll2u1oa4he2" path="res://Assets/Sprites/Icons/pause_icon_light.png" id="5_s1mob"]
+[ext_resource type="FontFile" uid="uid://ds5ma63r0notd" path="res://Assets/Retro Gaming.ttf" id="7_s1mob"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_6wlgu"]
 keycode = 32
@@ -53,5 +54,69 @@ texture_pressed = ExtResource("4_3fwla")
 texture_hover = ExtResource("5_s1mob")
 script = ExtResource("4_s1mob")
 metadata/_edit_use_anchors_ = true
+
+[node name="MushroomLabel" type="Label" parent="." unique_id=706502937]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -112.0
+offset_top = -44.0
+offset_right = -72.0
+offset_bottom = -21.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("7_s1mob")
+theme_override_font_sizes/font_size = 8
+text = "0"
+
+[node name="BirdLabel" type="Label" parent="." unique_id=2038740569]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -79.0
+offset_top = -44.0
+offset_right = -39.0
+offset_bottom = -21.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("7_s1mob")
+theme_override_font_sizes/font_size = 8
+text = "0"
+
+[node name="IceLabel" type="Label" parent="." unique_id=1388279414]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.0
+offset_top = -44.0
+offset_right = -6.0
+offset_bottom = -21.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("7_s1mob")
+theme_override_font_sizes/font_size = 8
+text = "0"
+
+[node name="PauseLabel" type="Label" parent="." unique_id=1852979542]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 106.0
+offset_top = -45.0
+offset_right = 146.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("7_s1mob")
+theme_override_font_sizes/font_size = 8
+text = "0"
 
 [connection signal="pressed" from="MarginContainer2/PauseButton" to="MarginContainer2/PauseButton" method="_on_pressed"]
