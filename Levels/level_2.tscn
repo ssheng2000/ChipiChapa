@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://0kad0jxwpr3u"]
+
+[ext_resource type="PackedScene" uid="uid://cdonasd1xjlnd" path="res://Levels/level_template.tscn" id="1_ll1bl"]
+[ext_resource type="PackedScene" uid="uid://blfhy8oh4xkip" path="res://Scenes/loot_box.tscn" id="2_kbe2v"]
+
+[node name="level_2" unique_id=824580844 instance=ExtResource("1_ll1bl")]
+
+[node name="TileMap" parent="." index="0" unique_id=1784102515]
+layer_0/tile_data = PackedInt32Array(1900555, 65536, 0, 1900556, 65536, 0, 1900557, 65536, 0, 1900558, 65536, 0, 1900559, 65536, 0, 1900560, 65536, 0, 1900561, 65536, 0, 1900562, 65536, 0, 1900563, 65536, 0, 1900564, 65536, 0, 1900565, 65536, 0, 1900566, 65536, 0, 1900567, 65536, 0, 1900568, 65536, 0, 1900569, 65536, 0, 1900570, 65536, 0, 1900571, 65536, 0, 1900572, 65536, 0, 1900573, 65536, 0, 1900574, 65536, 0, 1900575, 65536, 0, 1900576, 65536, 0, 1900577, 65536, 0, 1900578, 65536, 0, 1900579, 65536, 0, 1900580, 65536, 0, 1900581, 65536, 0, 1900582, 65536, 0, 1900583, 65536, 0, 1900584, 65536, 0, 1900585, 65536, 0, 1900586, 65536, 0, 1900587, 65536, 0, 1900588, 65536, 0, 1900589, 65536, 0, 1900590, 65536, 0, 1900591, 65536, 0, 1900592, 65536, 0, 1900593, 65536, 0, 1900594, 65536, 0, 1900595, 65536, 0, 1900596, 65536, 0, 1900597, 65536, 0, 1900598, 65536, 0, 1900599, 65536, 0, 1900600, 65536, 0, 1900601, 65536, 0, 1900602, 65536, 0)
+
+[node name="Player_Start_Pos" parent="." index="3" unique_id=948667193]
+position = Vector2(253, 445)
+
+[node name="Goal_Flag" parent="." index="4" unique_id=976252444]
+position = Vector2(925, 430)
+
+[node name="LootBox" parent="." index="5" unique_id=1391872162 instance=ExtResource("2_kbe2v")]
+position = Vector2(635, 454)
+added_ice = 3
+added_mushrooms = 1
+added_birds = 2
+
+[node name="GPUParticles2D" parent="." index="6" unique_id=855938025]
+position = Vector2(100, -33)
