@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dar34ede2v7vu"]
 
-[ext_resource type="PackedScene" uid="uid://btekrsm1oh5n0" path="res://Scenes/buildable_template.tscn" id="1_0q7t7"]
+[ext_resource type="Script" path="res://Scripts/buildable_object.gd" id="1_0q7t7"]
 [ext_resource type="Texture2D" uid="uid://d4i57vu4p7j" path="res://icon.svg" id="2_e0au5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0q7t7"]
@@ -9,20 +9,23 @@ size = Vector2(127, 24)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8wxru"]
 size = Vector2(100, 21)
 
-[node name="Mushroom" unique_id=1191292781 instance=ExtResource("1_0q7t7")]
+[node name="Mushroom" type="Node2D" unique_id=1191292781]
 process_mode = 2
 scale = Vector2(0.5, 0.5)
+script = ExtResource("1_0q7t7")
 
-[node name="CollisionShape2D" parent="RigidBody2D" parent_id_path=PackedInt32Array(582075895) index="0" unique_id=909133432]
+[node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=582075895]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" unique_id=909133432]
 position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_0q7t7")
 
-[node name="BounceArea" type="Area2D" parent="RigidBody2D" parent_id_path=PackedInt32Array(582075895) index="1" unique_id=1810071199]
+[node name="BounceArea" type="Area2D" parent="RigidBody2D" unique_id=1810071199]
 collision_layer = 9
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D/BounceArea" index="0" unique_id=1335594896]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D/BounceArea" unique_id=1335594896]
 position = Vector2(0, -20)
 shape = SubResource("RectangleShape2D_8wxru")
 
-[node name="Sprite2D" parent="RigidBody2D" parent_id_path=PackedInt32Array(582075895) index="2" unique_id=823917014]
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D" unique_id=823917014]
 texture = ExtResource("2_e0au5")

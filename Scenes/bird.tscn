@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bp3mjpokd8os"]
 
-[ext_resource type="PackedScene" uid="uid://btekrsm1oh5n0" path="res://Scenes/buildable_template.tscn" id="1_crnqq"]
+[ext_resource type="Script" path="res://Scripts/buildable_object.gd" id="1_mcegt"]
 [ext_resource type="Texture2D" uid="uid://clhk4vfs8gv4b" path="res://Assets/Sprites/Items/duck.png" id="2_mcegt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6ljjq"]
@@ -80,22 +80,24 @@ animations = [{
 "speed": 20.0
 }]
 
-[node name="Bird" unique_id=1191292781 instance=ExtResource("1_crnqq")]
-process_mode = 0
+[node name="Bird" type="Node2D" unique_id=1191292781]
+script = ExtResource("1_mcegt")
 is_blowing_right = true
 
-[node name="WindArea" type="Area2D" parent="RigidBody2D" parent_id_path=PackedInt32Array(582075895) index="0" unique_id=1786720510]
+[node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=582075895]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D/WindArea" index="0" unique_id=277479711]
+[node name="WindArea" type="Area2D" parent="RigidBody2D" unique_id=1786720510]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D/WindArea" unique_id=277479711]
 position = Vector2(94, 0)
 shape = SubResource("RectangleShape2D_6ljjq")
 
-[node name="CollisionShape2D" parent="RigidBody2D" parent_id_path=PackedInt32Array(582075895) index="1" unique_id=909133432]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" unique_id=909133432]
 shape = SubResource("RectangleShape2D_cchwj")
 
-[node name="Sprite2D" parent="RigidBody2D" parent_id_path=PackedInt32Array(582075895) index="2" unique_id=823917014]
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D" unique_id=823917014]
 scale = Vector2(0.5, 0.5)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="RigidBody2D" parent_id_path=PackedInt32Array(582075895) index="3" unique_id=1183284866]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="RigidBody2D" unique_id=1183284866]
 sprite_frames = SubResource("SpriteFrames_oc6qe")
 frame_progress = 0.138737
