@@ -23,6 +23,14 @@ config/icon="res://icon.svg"
 
 GlobalEventBus="*res://Scripts/global_event_bus.gd"
 
+[display]
+
+window/size/viewport_width=256
+window/size/viewport_height=144
+window/size/window_width_override=2048
+window/size/window_height_override=1152
+window/stretch/mode="canvas_items"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
