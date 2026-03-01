@@ -15,7 +15,12 @@ var pauses_remaining := 0
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	GlobalEventBus.build_mode_changed.connect(_on_build_mode_changed)
+	GlobalEventBus.set_top_controls_visibility.connect(_on_control_visibility)
 	pressed.connect(_on_pressed)
+	visible = false
+
+func _on_control_visibility(v: bool):
+	visible = v
 
 func set_pauses_remaining(v: int):
 	pauses_remaining = v

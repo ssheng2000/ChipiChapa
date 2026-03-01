@@ -35,6 +35,7 @@ func _ready():
 	GlobalEventBus.unpause.connect(_on_unpause_requested)
 	GlobalEventBus.selected_block.connect(_on_block_select)
 	GlobalEventBus.loot_collected.connect(_on_loot_collected)
+	GlobalEventBus.set_top_controls_visibility.connect(_on_control_visibility)
 	_update_pause_button()
 	set_level_data()
 
@@ -119,3 +120,9 @@ func set_level_data():
 	ice_label.text      = str(ice_amount)
 	mushroom_label.text = str(mushroom_amount)
 	bird_label.text     = str(bird_amount)
+
+func _on_control_visibility(v: bool):
+	pause_label.visible = v
+	ice_label.visible = v
+	mushroom_label.visible = v
+	bird_label.visible = v
