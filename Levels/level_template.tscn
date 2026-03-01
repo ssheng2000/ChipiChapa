@@ -421,6 +421,35 @@ texture = ExtResource("1_x7nqe")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_ng53c")
 
+[sub_resource type="Curve" id="Curve_nsw7g"]
+_data = [Vector2(0.27516776, 1), 0.0, 0.0, 0, 0, Vector2(0.99999, 0), 0.0, 0.0, 0, 0, Vector2(1, 0.0005736351), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_sjjkl"]
+curve = SubResource("Curve_nsw7g")
+
+[sub_resource type="Gradient" id="Gradient_rbi8j"]
+offsets = PackedFloat32Array(0.24590164, 0.352459, 0.63114756, 0.74590164)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_rshia"]
+gradient = SubResource("Gradient_rbi8j")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_02uie"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(256, 30, 1)
+angular_velocity_min = -10.000016
+angular_velocity_max = -1.6093254e-05
+gravity = Vector3(45, 98, 0)
+scale_max = 4.0
+color_initial_ramp = SubResource("GradientTexture1D_rshia")
+alpha_curve = SubResource("CurveTexture_sjjkl")
+turbulence_enabled = true
+turbulence_noise_strength = 3.0
+turbulence_influence_min = 0.020000001
+turbulence_influence_max = 0.080000006
+
 [node name="Level_Template" type="Node2D" unique_id=824580844 node_paths=PackedStringArray("instance_parent")]
 script = ExtResource("1_nsw7g")
 instance_parent = NodePath("Buildables")
@@ -440,3 +469,11 @@ position = Vector2(574, 291)
 
 [node name="Goal_Flag" parent="." unique_id=976252444 instance=ExtResource("4_rbi8j")]
 position = Vector2(-206, 67)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=855938025]
+position = Vector2(319, 148)
+amount = 300
+lifetime = 8.0
+preprocess = 30.0
+randomness = 0.21
+process_material = SubResource("ParticleProcessMaterial_02uie")
