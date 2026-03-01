@@ -1,20 +1,21 @@
 [gd_scene format=3 uid="uid://j5g1e7ulynug"]
 
-[ext_resource type="Script" uid="uid://bl04mkllbt26u" path="res://Scripts/buildable_ice.gd" id="1_qpufp"]
+[ext_resource type="Script" path="res://Scripts/buildable_ice.gd" id="1_qpufp"]
 [ext_resource type="Texture2D" uid="uid://b845ugmqw00ug" path="res://Assets/Sprites/Items/stone.png" id="2_qpufp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x4uxj"]
-size = Vector2(16, 21)
+size = Vector2(16, 17)
 
 [node name="StoneBlock" type="Node2D" unique_id=1191292781]
 process_mode = 3
 script = ExtResource("1_qpufp")
 
 [node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=582075895]
+collision_layer = 3
 gravity_scale = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" unique_id=909133432]
-position = Vector2(0, -2.5)
+position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_x4uxj")
 
 [node name="Sprite2D" type="Sprite2D" parent="RigidBody2D" unique_id=823917014]

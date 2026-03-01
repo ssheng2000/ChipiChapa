@@ -58,11 +58,11 @@ func _set_position(pos: Vector2):
 	trees.get_child(0).position.x     = pos.x * (1-TREES_INFLUENCE)
 	town.get_child(0).position.x      = pos.x * (1-TOWN_INFLUENCE)
 	
-	sky.get_child(0).position.y       = pos.y - screen_h / 2
-	clouds.get_child(0).position.y    = pos.y - screen_h / 2
-	mountains.get_child(0).position.y = pos.y - screen_h / 2
-	trees.get_child(0).position.y     = pos.y - screen_h / 2
-	town.get_child(0).position.y      = pos.y - screen_h / 2
+	sky.get_child(0).position.y       = pos.y - screen_h * current_zoom / 2
+	clouds.get_child(0).position.y    = pos.y - screen_h * current_zoom / 2
+	mountains.get_child(0).position.y = pos.y - screen_h * current_zoom / 2
+	trees.get_child(0).position.y     = pos.y - screen_h * current_zoom / 2
+	town.get_child(0).position.y      = pos.y - screen_h * current_zoom / 2
 
 func _set_zoom(z: float):
 	zoom = Vector2(z, z)
