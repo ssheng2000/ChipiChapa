@@ -9,4 +9,4 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		return
 
 func _ready():
-	sprite.play("run")
+	sprite.play("default")
