@@ -2,8 +2,9 @@ extends CharacterBody2D
 
 @onready var sprite = $Sprite2D
 
-var SPEED = 10.0
-const JUMP_VELOCITY = -400.0
+var SPEED = 40.0
+const JUMP_VELOCITY = -400.0 # isnt used
+
 
 ## Step climbing settings
 const MAX_STEP_HEIGHT := 20.0  # Max ledge height (pixels) the player can walk up
@@ -46,6 +47,8 @@ func _physics_process(delta: float) -> void:
 		sprite.flip_h = false
 	else:
 		sprite.flip_h = true
+		
+	print("velocity", velocity) 
 
 
 ## Automatically walk up small steps using test_move().
