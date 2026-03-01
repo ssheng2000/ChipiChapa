@@ -1,7 +1,8 @@
 extends CharacterBody2D
 
+@onready var sprite = $Sprite2D
 
-const SPEED = 300.0
+@export var SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 
 ## Step climbing settings
@@ -10,6 +11,10 @@ const MAX_STEP_HEIGHT := 100.0  # Max ledge height (pixels) the player can walk 
 ## The character always moves. Arrow keys flip the direction.
 var move_dir := 1.0  # 1.0 = right, -1.0 = left
 
+func _ready() -> void:
+	# This starts the "run" animation immediately when the game starts
+	sprite.play("run")
+	
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
