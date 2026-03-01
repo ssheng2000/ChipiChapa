@@ -60,9 +60,11 @@ position = Vector2(206, 21)
 added_birds = 1
 
 [node name="Tree1" type="Sprite2D" parent="." index="9" unique_id=1246217404]
+z_index = -1
 position = Vector2(402, -35)
 texture = ExtResource("4_vr4rd")
 
 [node name="Snowman" type="Sprite2D" parent="." index="10" unique_id=1190167172]
+z_index = -1
 position = Vector2(184, 17)
 texture = ExtResource("5_eex2w")
