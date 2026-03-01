@@ -8,6 +8,8 @@ signal next_level
 
 signal restart_level
 
+signal death
+
 signal build_mode_changed(enabled,bool)
 
 signal selected_block(block_type: DataTypes.Blocks)

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://brr34rmifata8" path="res://Levels/level.gd" id="1_nsw7g"]
 [ext_resource type="Texture2D" uid="uid://cbqyya0crk1b3" path="res://Assets/Sprites/snow_tileset_V1.jpeg" id="1_x7nqe"]
+[ext_resource type="PackedScene" uid="uid://j5g1e7ulynug" path="res://Scenes/ice_block.tscn" id="2_rbi8j"]
 [ext_resource type="PackedScene" uid="uid://j080tjxnmxwr" path="res://Scenes/goal_flag.tscn" id="4_rbi8j"]
 [ext_resource type="PackedScene" uid="uid://dtu2rki4r8aiv" path="res://Scenes/build_ui.tscn" id="4_sjjkl"]
 
@@ -453,6 +454,7 @@ turbulence_influence_max = 0.080000006
 [node name="Level_Template" type="Node2D" unique_id=824580844 node_paths=PackedStringArray("instance_parent")]
 script = ExtResource("1_nsw7g")
 instance_parent = NodePath("Buildables")
+scene_ice = ExtResource("2_rbi8j")
 
 [node name="TileMap" type="TileMap" parent="." unique_id=1784102515]
 position = Vector2(8, 0)

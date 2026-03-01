@@ -3,20 +3,46 @@ extends Node
 enum Mode { RUN, BUILD }
 
 @export var levels: Array[PackedScene] = []
+@export var cutscenes: Array[PackedScene] = []
 
 @onready var level_container := $Levels
 
+@onready var easy_music = $Music/EasyMusic
+@onready var medium_music = $Music/MediumMusic
+@onready var hard_music = $Music/HardMusic
+
+@onready var player := $Player
+
 var level_index := 0
 var current_level: Node = null
-@onready var player := $Player
+var restarting = false
+
+var cutscene_index := 0
+var current_cutscene: Node = null
+
+
 
 func _ready():
 	GlobalEventBus.next_level.connect(_on_next_level)
 	GlobalEventBus.restart_level.connect(_on_restart_level)
+	GlobalEventBus.death.connect(_on_death)
 	player.hide()
+	_load_cutscene(0)
 	_load_level(0)
 
 func _load_level(i: int):
+	
+	
+	
+	if not restarting:
+		if (i==0):
+			easy_music.play()
+		if (i==2):
+			easy_music.fade_out()
+			medium_music.play()
+		if (i==4):
+			medium_music.fade_out()
+			hard_music.play()
 	if current_level and is_instance_valid(current_level):
 		current_level.queue_free()
 
@@ -40,4 +66,13 @@ func _on_next_level():
 	_load_level(level_index)
 
 func _on_restart_level():
+	restarting = true
 	_load_level(level_index)
+	restarting = false
+	
+func _load_cutscene(i: int):
+	return
+	
+func _on_death():
+	GlobalEventBus.restart_level.emit()
+	return

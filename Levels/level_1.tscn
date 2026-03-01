@@ -1,8 +1,7 @@
 [gd_scene format=3 uid="uid://24qkhr1a8goe"]
 
 [ext_resource type="PackedScene" uid="uid://cdonasd1xjlnd" path="res://Levels/level_template.tscn" id="1_n0qsc"]
-[ext_resource type="PackedScene" uid="uid://dar34ede2v7vu" path="res://Scenes/mushroom.tscn" id="2_3mhv4"]
-[ext_resource type="PackedScene" uid="uid://bp3mjpokd8os" path="res://Scenes/bird.tscn" id="3_rf6l5"]
+[ext_resource type="PackedScene" uid="uid://cfwvaka4kicae" path="res://Scenes/death_spikes.tscn" id="2_dilhk"]
 
 [node name="Level_1" unique_id=824580844 instance=ExtResource("1_n0qsc")]
 ice_amount = 5
@@ -17,3 +16,8 @@ position = Vector2(385, 414)
 
 [node name="Goal_Flag" parent="." index="4" unique_id=976252444]
 position = Vector2(801, 321)
+
+[node name="Spikes" type="Node2D" parent="." index="6" unique_id=1018923480]
+
+[node name="DeathSpikes" parent="Spikes" index="0" unique_id=1350151346 instance=ExtResource("2_dilhk")]
+position = Vector2(664, 391)
