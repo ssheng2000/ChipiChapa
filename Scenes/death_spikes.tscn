@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cfwvaka4kicae"]
+
+[ext_resource type="Texture2D" uid="uid://j8pjwbqu4b0s" path="res://Assets/Sprites/Objects/icicle.png" id="1_7jw04"]
+[ext_resource type="Script" uid="uid://dod75koylfoto" path="res://Scenes/death_spikes.gd" id="1_srire"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_srire"]
+
+[node name="DeathSpikes" type="Node2D" unique_id=1350151346]
+script = ExtResource("1_srire")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=2062874229]
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D" unique_id=753422710]
+texture = ExtResource("1_7jw04")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=738795139]
+shape = SubResource("RectangleShape2D_srire")
+
+[connection signal="body_shape_entered" from="Area2D" to="." method="_on_area_2d_body_shape_entered"]

@@ -10,9 +10,21 @@ extends Node2D
 @export var mushroom_amount := 0
 @export var bird_amount := 0
 
-enum Mode { RUN, BUILD }
+# Parallax things exposed
+@onready var sky: Parallax2D = $Parallax/Sky
+@onready var clouds: Parallax2D = $Parallax/Clouds
+@onready var mountains: Parallax2D = $Parallax/Mountains
+@onready var trees: Parallax2D = $Parallax/Trees
+@onready var town: Parallax2D = $Parallax/Town
 
 @onready var pause_button := $Build_UI/MarginContainer/PauseButton
+
+@onready var mushroom_label := self.find_child("MushroomLabel")
+@onready var ice_label := self.find_child("IceLabel")
+@onready var bird_label := self.find_child("BirdLabel")
+@onready var pause_label := self.find_child("PauseLabel")
+
+enum Mode { RUN, BUILD }
 
 var mode: Mode = Mode.RUN
 var pauses_remaining := pauses_amount
@@ -24,6 +36,7 @@ func _ready():
 	GlobalEventBus.selected_block.connect(_on_block_select)
 	GlobalEventBus.loot_collected.connect(_on_loot_collected)
 	_update_pause_button()
+	set_level_data()
 
 func _set_mode(new_mode: Mode):
 		mode = new_mode
@@ -38,7 +51,9 @@ func _on_pause_requested():
 		return
 
 	pauses_remaining -= 1
+	print("pauses remaining", pauses_remaining)
 	_update_pause_button()
+	set_level_data()
 	_set_mode(Mode.BUILD)
 
 func _on_unpause_requested():
@@ -54,6 +69,7 @@ func select_block(block: DataTypes.Blocks) -> int:
 	if block==DataTypes.Blocks.Ice:
 		if ice_amount>0:
 			ice_amount-=1
+			set_level_data()
 			block_selected = block
 			try_create_buildable(scene_ice)
 			GlobalEventBus.block_successfully_selected.emit(block)
@@ -61,6 +77,7 @@ func select_block(block: DataTypes.Blocks) -> int:
 	if block==DataTypes.Blocks.Mushroom:
 		if mushroom_amount>0:
 			mushroom_amount-=1
+			set_level_data()
 			block_selected = block
 			try_create_buildable(scene_mushroom)
 			GlobalEventBus.block_successfully_selected.emit(block)
@@ -68,6 +85,7 @@ func select_block(block: DataTypes.Blocks) -> int:
 	if block==DataTypes.Blocks.Bird:
 		if bird_amount>0:
 			bird_amount-=1
+			set_level_data()
 			block_selected = block
 			try_create_buildable(scene_bird)
 			GlobalEventBus.block_successfully_selected.emit(block)
@@ -93,4 +111,11 @@ func _on_loot_collected(added_loot):
 	ice_amount += added_loot[0]
 	mushroom_amount += added_loot[1]
 	bird_amount += added_loot[2]
+	set_level_data()
 	print("updated_amounts", ice_amount, mushroom_amount, bird_amount)
+	
+func set_level_data():
+	pause_label.text    = str(pauses_remaining)
+	ice_label.text      = str(ice_amount)
+	mushroom_label.text = str(mushroom_amount)
+	bird_label.text     = str(bird_amount)

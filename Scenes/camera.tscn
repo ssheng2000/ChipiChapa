@@ -1,13 +1,13 @@
-[gd_scene format=4 uid="uid://ji12ko8iwom3"]
+[gd_scene format=4 uid="uid://mtxfjgp4hxni"]
 
 [ext_resource type="Script" uid="uid://0g5luehfovxk" path="res://Scripts/camera.gd" id="1_c66t7"]
 [ext_resource type="Texture2D" uid="uid://bfcea6l5a76xp" path="res://Assets/Sprites/Background/sky.png" id="2_3he0p"]
-[ext_resource type="Texture2D" uid="uid://byabfi70k7axt" path="res://Assets/Sprites/Background/clouds.png" id="3_gpm26"]
-[ext_resource type="Texture2D" uid="uid://daj6p0eoi2vbq" path="res://Assets/Sprites/Background/mountains.png" id="4_3uemn"]
+[ext_resource type="Texture2D" uid="uid://byabfi70k7axt" path="res://Assets/Sprites/Background/long_cloud.png" id="3_gpm26"]
+[ext_resource type="Texture2D" uid="uid://daj6p0eoi2vbq" path="res://Assets/Sprites/Background/long_mountains.png" id="4_3uemn"]
 [ext_resource type="Texture2D" uid="uid://c46gw4h2bieo" path="res://Assets/Sprites/Background/trees.png" id="5_rhlbw"]
 [ext_resource type="Texture2D" uid="uid://cjcetg2fvl71r" path="res://Assets/Sprites/Background/town.png" id="6_n8ffe"]
 [ext_resource type="Texture2D" uid="uid://cahpkiwpbe0p7" path="res://Assets/Sprites/tileset.png" id="7_akgx8"]
-[ext_resource type="Script" uid="uid://qjwjti8rijke" path="res://Scripts/test_player.gd" id="8_0pbyf"]
+[ext_resource type="Script" path="res://Scripts/test_player.gd" id="8_0pbyf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_344ge"]
 texture = ExtResource("7_akgx8")

@@ -55,7 +55,7 @@ func _ready():
 
 func _process(_delta): 
 	if state == State.PLACING: 
-		global_position = get_global_mouse_position().snapped(Vector2(16, 16))
+		global_position = get_global_mouse_position().snapped(Vector2(1, 1))
 
 func _on_build_mode_changed(enabled: bool):
 	if enabled:

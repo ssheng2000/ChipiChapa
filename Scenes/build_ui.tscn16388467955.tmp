@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://dtu2rki4r8aiv"]
+
+[ext_resource type="PackedScene" uid="uid://pandrljuc1t7" path="res://Scenes/builder_panel.tscn" id="1_pxqcr"]
+[ext_resource type="Theme" uid="uid://b2milsbmx2j2r" path="res://Scenes/building_panel_theme.tres" id="2_6wlgu"]
+[ext_resource type="Texture2D" uid="uid://r6y8y57ixfgx" path="res://Assets/Sprites/Icons/pause.png" id="2_any4c"]
+[ext_resource type="Texture2D" uid="uid://b2l285l52mou8" path="res://Assets/Sprites/Icons/pause_icon_dark.png" id="4_3fwla"]
+[ext_resource type="Script" uid="uid://nxwangety8i2" path="res://Scripts/pause_button.gd" id="4_s1mob"]
+[ext_resource type="Texture2D" uid="uid://cpll2u1oa4he2" path="res://Assets/Sprites/Icons/pause_icon_light.png" id="5_s1mob"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_6wlgu"]
+keycode = 32
+
+[sub_resource type="Shortcut" id="Shortcut_pxqcr"]
+events = [SubResource("InputEventKey_6wlgu")]
+
+[node name="Build_UI" type="CanvasLayer" unique_id=211287279]
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=210509588]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Builder_Panel" parent="MarginContainer" unique_id=2013814623 instance=ExtResource("1_pxqcr")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="MarginContainer2" type="MarginContainer" parent="." unique_id=699105501]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -36.0
+offset_bottom = 45.0
+grow_horizontal = 0
+theme = ExtResource("2_6wlgu")
+theme_type_variation = &"MarginContainer"
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 0
+
+[node name="PauseButton" type="TextureButton" parent="MarginContainer2" unique_id=1752375724]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme = ExtResource("2_6wlgu")
+theme_type_variation = &"ToolButton"
+shortcut = SubResource("Shortcut_pxqcr")
+texture_normal = ExtResource("2_any4c")
+texture_pressed = ExtResource("4_3fwla")
+texture_hover = ExtResource("5_s1mob")
+script = ExtResource("4_s1mob")
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="MarginContainer2/PauseButton" to="MarginContainer2/PauseButton" method="_on_pressed"]

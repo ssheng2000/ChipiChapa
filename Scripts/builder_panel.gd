@@ -1,8 +1,8 @@
-extends PanelContainer
+extends Control
 
-@onready var ice_button: Button = $MarginContainer/HBoxContainer/IceButton
-@onready var mushroom_button: Button = $MarginContainer/HBoxContainer/MushroomButton
-@onready var bird_button: Button = $MarginContainer/HBoxContainer/BirdButton
+@onready var ice_button:= $MarginContainer/HBoxContainer/IceButton
+@onready var mushroom_button:= $MarginContainer/HBoxContainer/MushroomButton
+@onready var bird_button:= $MarginContainer/HBoxContainer/BirdButton
 
 var selected_block: DataTypes.Blocks = DataTypes.Blocks.None
 

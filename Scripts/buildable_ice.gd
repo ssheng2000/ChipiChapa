@@ -1,0 +1,2 @@
+extends BuildableBlocks
+class_name BuildableIce

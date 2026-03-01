@@ -1,8 +1,12 @@
 [gd_scene format=3 uid="uid://dtu2rki4r8aiv"]
 
 [ext_resource type="PackedScene" uid="uid://pandrljuc1t7" path="res://Scenes/builder_panel.tscn" id="1_pxqcr"]
+[ext_resource type="Theme" uid="uid://b2milsbmx2j2r" path="res://Scenes/building_panel_theme.tres" id="2_6wlgu"]
 [ext_resource type="Texture2D" uid="uid://r6y8y57ixfgx" path="res://Assets/Sprites/Icons/pause.png" id="2_any4c"]
+[ext_resource type="Texture2D" uid="uid://b2l285l52mou8" path="res://Assets/Sprites/Icons/pause_icon_dark.png" id="4_3fwla"]
 [ext_resource type="Script" uid="uid://nxwangety8i2" path="res://Scripts/pause_button.gd" id="4_s1mob"]
+[ext_resource type="Texture2D" uid="uid://cpll2u1oa4he2" path="res://Assets/Sprites/Icons/pause_icon_light.png" id="5_s1mob"]
+[ext_resource type="FontFile" uid="uid://ds5ma63r0notd" path="res://Assets/Retro Gaming.ttf" id="7_s1mob"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_6wlgu"]
 keycode = 32
@@ -24,13 +28,95 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="PauseButton" type="Button" parent="MarginContainer" unique_id=38707815]
+[node name="MarginContainer2" type="MarginContainer" parent="." unique_id=699105501]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -36.0
+offset_bottom = 45.0
+grow_horizontal = 0
+theme = ExtResource("2_6wlgu")
+theme_type_variation = &"MarginContainer"
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 0
+
+[node name="PauseButton" type="TextureButton" parent="MarginContainer2" unique_id=1752375724]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme = ExtResource("2_6wlgu")
+theme_type_variation = &"ToolButton"
 shortcut = SubResource("Shortcut_pxqcr")
-icon = ExtResource("2_any4c")
+texture_normal = ExtResource("2_any4c")
+texture_pressed = ExtResource("4_3fwla")
+texture_hover = ExtResource("5_s1mob")
 script = ExtResource("4_s1mob")
 metadata/_edit_use_anchors_ = true
 
-[connection signal="pressed" from="MarginContainer/PauseButton" to="MarginContainer/PauseButton" method="_on_pressed"]
+[node name="MushroomLabel" type="Label" parent="." unique_id=706502937]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -112.0
+offset_top = -44.0
+offset_right = -72.0
+offset_bottom = -21.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("7_s1mob")
+theme_override_font_sizes/font_size = 8
+text = "0"
+
+[node name="BirdLabel" type="Label" parent="." unique_id=2038740569]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -79.0
+offset_top = -44.0
+offset_right = -39.0
+offset_bottom = -21.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("7_s1mob")
+theme_override_font_sizes/font_size = 8
+text = "0"
+
+[node name="IceLabel" type="Label" parent="." unique_id=1388279414]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.0
+offset_top = -44.0
+offset_right = -6.0
+offset_bottom = -21.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("7_s1mob")
+theme_override_font_sizes/font_size = 8
+text = "0"
+
+[node name="PauseLabel" type="Label" parent="." unique_id=1852979542]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 106.0
+offset_top = -45.0
+offset_right = 146.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("7_s1mob")
+theme_override_font_sizes/font_size = 8
+text = "0"
+
+[connection signal="pressed" from="MarginContainer2/PauseButton" to="MarginContainer2/PauseButton" method="_on_pressed"]

@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://d4i57vu4p7j" path="res://icon.svg" id="1_8i5c6"]
 [ext_resource type="PackedScene" uid="uid://b8eo4gkb6tpip" path="res://player.tscn" id="2_uu5yu"]
-[ext_resource type="PackedScene" uid="uid://dar34ede2v7vu" path="res://Scenes/mushroom.tscn" id="3_uu5yu"]
+[ext_resource type="PackedScene" uid="uid://dar34ede2v7vu" path="res://Scenes/mushroomOld.tscn" id="3_uu5yu"]
 [ext_resource type="PackedScene" uid="uid://bp3mjpokd8os" path="res://Scenes/bird.tscn" id="4_8rcec"]
 [ext_resource type="PackedScene" uid="uid://j5g1e7ulynug" path="res://Scenes/ice_block.tscn" id="5_7ph4w"]
 
