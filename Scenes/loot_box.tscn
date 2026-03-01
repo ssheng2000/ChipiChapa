@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://blfhy8oh4xkip"]
+
+[ext_resource type="Texture2D" uid="uid://d4i57vu4p7j" path="res://icon.svg" id="1_0ipmj"]
+[ext_resource type="Script" uid="uid://dvfw2qr182c0j" path="res://Scenes/loot_box.gd" id="1_bej16"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bej16"]
+
+[node name="LootBox" type="Node2D" unique_id=1391872162]
+script = ExtResource("1_bej16")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=863292238]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1345724051]
+shape = SubResource("RectangleShape2D_bej16")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D" unique_id=882660308]
+position = Vector2(-5.364418e-07, 1.1920929e-07)
+scale = Vector2(0.171875, 0.15624999)
+texture = ExtResource("1_0ipmj")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
