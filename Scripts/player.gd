@@ -7,7 +7,7 @@ const JUMP_VELOCITY = -400.0 # isnt used
 
 
 ## Step climbing settings
-const MAX_STEP_HEIGHT := 20.0  # Max ledge height (pixels) the player can walk up
+const MAX_STEP_HEIGHT := 16.0  # Max ledge height (pixels) the player can walk up
 
 ## The character always moves. Arrow keys flip the direction.
 var move_dir := 1.0  # 1.0 = right, -1.0 = left
