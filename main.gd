@@ -62,7 +62,10 @@ func _load_level(i: int):
 	camera.bind_parallax(current_level.sky, current_level.clouds, current_level.mountains, current_level.trees, current_level.town)
 	camera.intro_finished.connect(_on_camera_intro_finished, CONNECT_ONE_SHOT)
 	#camera.play_linear_intro(current_level.find_child("Player_Start_Pos").global_position, current_level.find_child("Goal_Flag").global_position)
-	camera.play_intro_pan_and_zoom(current_level.find_child("Player_Start_Pos").global_position, current_level.find_child("Goal_Flag").global_position)
+	camera.play_intro_pan_and_zoom(
+		current_level.find_child("Player_Start_Pos").global_position + Vector2(0, -50),
+		current_level.find_child("Goal_Flag").global_position
+	)
 	
 
 

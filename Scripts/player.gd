@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @onready var sprite = $Sprite2D
 
-var SPEED = 100.0
+var SPEED = 10.0
 const JUMP_VELOCITY = -400.0
 
 ## Step climbing settings

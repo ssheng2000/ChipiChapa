@@ -490,7 +490,6 @@ process_material = SubResource("ParticleProcessMaterial_02uie")
 position = Vector2(140, 71)
 
 [node name="Sky" type="Parallax2D" parent="Parallax" unique_id=1914561234]
-scroll_scale = Vector2(0, 1)
 repeat_size = Vector2(256, 0)
 repeat_times = 2
 
@@ -499,7 +498,6 @@ position = Vector2(0, 1)
 texture = ExtResource("6_qcxce")
 
 [node name="Clouds" type="Parallax2D" parent="Parallax" unique_id=1200413590]
-scroll_scale = Vector2(0.02, 1)
 repeat_size = Vector2(256, 0)
 repeat_times = 2
 
@@ -507,14 +505,12 @@ repeat_times = 2
 texture = ExtResource("7_4autd")
 
 [node name="Mountains" type="Parallax2D" parent="Parallax" unique_id=800845062]
-scroll_scale = Vector2(0.05, 1)
 repeat_size = Vector2(256, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax/Mountains" unique_id=1776601975]
 texture = ExtResource("8_2i2tq")
 
 [node name="Trees" type="Parallax2D" parent="Parallax" unique_id=778867735]
-scroll_scale = Vector2(0.2, 1)
 repeat_size = Vector2(256, 0)
 repeat_times = 2
 
@@ -522,7 +518,6 @@ repeat_times = 2
 texture = ExtResource("9_43g2l")
 
 [node name="Town" type="Parallax2D" parent="Parallax" unique_id=584761409]
-scroll_scale = Vector2(0.3, 1)
 repeat_size = Vector2(256, 0)
 repeat_times = 2
 

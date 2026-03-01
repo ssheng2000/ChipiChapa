@@ -9,7 +9,6 @@ signal intro_finished
 @export var follow_offset := Vector2(0, -50)
 
 
-
 # These get assigned by bind_parallax() when a level loads
 var sky: Parallax2D
 var clouds: Parallax2D
@@ -28,12 +27,12 @@ var cam_offset_y: float = 0.0
 var playing_intro := false
 
 func _ready() -> void:
+	pass
 	# Start in a sane state even if parallax isn't bound yet
-	_apply_zoom(1.0)
 
 	# Optional: let Main call play_intro() instead
-	if auto_play_intro:
-		play_intro()
+	#if auto_play_intro:
+		#play_intro()
 
 func bind_parallax(
 	p_sky: Parallax2D,
@@ -48,105 +47,74 @@ func bind_parallax(
 	trees = p_trees
 	town = p_town
 
-	# Re-apply current zoom so the newly bound level instantly matches
-	_apply_zoom(current_zoom)
+func _set_position(pos: Vector2):
+	position = pos
+	
+	var screen_h = get_viewport_rect().size.y
+	
+	sky.get_child(0).position.x       = pos.x * (1-SKY_INFLUENCE)
+	clouds.get_child(0).position.x    = pos.x * (1-CLOUDS_INFLUENCE)
+	mountains.get_child(0).position.x = pos.x * (1-MOUNTAINS_INFLUENCE)
+	trees.get_child(0).position.x     = pos.x * (1-TREES_INFLUENCE)
+	town.get_child(0).position.x      = pos.x * (1-TOWN_INFLUENCE)
+	
+	sky.get_child(0).position.y       = pos.y - screen_h / 2
+	clouds.get_child(0).position.y    = pos.y - screen_h / 2
+	mountains.get_child(0).position.y = pos.y - screen_h / 2
+	trees.get_child(0).position.y     = pos.y - screen_h / 2
+	town.get_child(0).position.y      = pos.y - screen_h / 2
 
-func play_intro() -> void:
-	playing_intro = true
-	_apply_zoom(1.0)
-
-	var tween = create_tween()
-	tween.set_ease(Tween.EASE_IN_OUT)
-	tween.set_trans(Tween.TRANS_SINE)
-	tween.tween_method(_apply_zoom, 1.0, 0.5, 2.0)
-	tween.tween_interval(0.5)
-	tween.tween_method(_apply_zoom, 0.5, 1.0, 2.0)
-
-	tween.finished.connect(func():
-		playing_intro = false
-		intro_finished.emit()
-	)
-
-func _apply_zoom(z: float) -> void:
-	current_zoom = z
+func _set_zoom(z: float):
 	zoom = Vector2(z, z)
-
-	var screen_h := get_viewport_rect().size.y
-
-	# As we zoom out, world-space height increases.
-	# Store an offset that will be applied while following the player.
-	cam_offset_y = - (screen_h / z - screen_h) / 2.0
-
-	# If we don't have parallax bound yet, we're done (camera zoom still works).
-	if not sky or not clouds or not mountains or not trees or not town:
-		return
-
+	
+	var screen_w = get_viewport_rect().size.x
+	var screen_h = get_viewport_rect().size.y
+	var cam_offset = 0
+	
 	var sky_comp       = lerp(1.0 / z, 1.0, SKY_INFLUENCE)
 	var clouds_comp    = lerp(1.0 / z, 1.0, CLOUDS_INFLUENCE)
 	var mountains_comp = lerp(1.0 / z, 1.0, MOUNTAINS_INFLUENCE)
 	var trees_comp     = lerp(1.0 / z, 1.0, TREES_INFLUENCE)
 	var town_comp      = lerp(1.0 / z, 1.0, TOWN_INFLUENCE)
-
-	# Scale the first child (assumes Sprite2D/Node2D as child 0)
+	
 	sky.get_child(0).scale       = Vector2.ONE * sky_comp
 	clouds.get_child(0).scale    = Vector2.ONE * clouds_comp
 	mountains.get_child(0).scale = Vector2.ONE * mountains_comp
 	trees.get_child(0).scale     = Vector2.ONE * trees_comp
 	town.get_child(0).scale      = Vector2.ONE * town_comp
-
-	# Keep bottoms aligned to screen bottom while zooming (plus our camera offset)
-	sky.get_child(0).position.y       = screen_h - sky_comp * z * screen_h + cam_offset_y
-	clouds.get_child(0).position.y    = screen_h - clouds_comp * z * screen_h + cam_offset_y
-	mountains.get_child(0).position.y = screen_h - mountains_comp * z * screen_h + cam_offset_y
-	trees.get_child(0).position.y     = screen_h - trees_comp * z * screen_h + cam_offset_y
-	town.get_child(0).position.y      = screen_h - town_comp * z * screen_h + cam_offset_y
-
-	# Update repeat size to match scaled sprite width so tiling stays seamless
-	var base_w := 256.0
+	
+	sky.get_child(0).position.y       = position.y + screen_h / 2 - sky_comp * z * screen_h + cam_offset
+	clouds.get_child(0).position.y    = position.y + screen_h / 2 - clouds_comp * z * screen_h + cam_offset
+	mountains.get_child(0).position.y = position.y + screen_h / 2 - mountains_comp * z * screen_h + cam_offset
+	trees.get_child(0).position.y     = position.y + screen_h / 2 - trees_comp * z * screen_h + cam_offset
+	town.get_child(0).position.y      = position.y + screen_h / 2 - town_comp * z * screen_h + cam_offset
+	
+	var base_w = 256.0
 	sky.repeat_size.x       = base_w * sky_comp
 	clouds.repeat_size.x    = base_w * clouds_comp
 	mountains.repeat_size.x = base_w * mountains_comp
 	trees.repeat_size.x     = base_w * trees_comp
 	town.repeat_size.x      = base_w * town_comp
-
-func play_linear_intro(start_global: Vector2, end_global: Vector2, duration := 2.0) -> void:
-	playing_intro = true
-	global_position = start_global
-
-	var tween := create_tween()
-	tween.set_ease(Tween.EASE_IN_OUT)
-	tween.set_trans(Tween.TRANS_SINE)
-
-	# Go start → end
-	tween.tween_property(self, "global_position", end_global, duration)
-
-	# Then end → start
-	tween.tween_property(self, "global_position", start_global, duration)
-
-	tween.finished.connect(func():
-		playing_intro = false
-		intro_finished.emit()
-	)
-
+	
 func play_intro_pan_and_zoom(start_global: Vector2, end_global: Vector2) -> void:
 	playing_intro = true
-	global_position = start_global
-	_apply_zoom(1.0)
+	_set_position(start_global)
+	_set_zoom(1.0)
 
 	var tween := create_tween()
 	tween.set_ease(Tween.EASE_IN_OUT)
 	tween.set_trans(Tween.TRANS_SINE)
 
 	# --- Track A: camera pan (sequential) ---
-	tween.tween_property(self, "global_position", end_global, 2.0)
+	tween.tween_method(_set_position, start_global, end_global, 2.0)
 	tween.tween_interval(0.5)
-	tween.tween_property(self, "global_position", start_global, 2.0)
+	tween.tween_method(_set_position, end_global, start_global, 2.0)
 
 	# --- Track B: zoom (parallel to the whole sequence above) ---
 	var z := tween.parallel()
-	z.tween_method(_apply_zoom, 1.0, 0.5, 2.0)
+	z.tween_method(_set_zoom, 1.0, 0.5, 2.0)
 	z.tween_interval(0.5)
-	z.tween_method(_apply_zoom, 0.5, 1.0, 2.0)
+	z.tween_method(_set_zoom, 0.5, 1.0, 2.0)
 
 	tween.finished.connect(func():
 		playing_intro = false
@@ -160,6 +128,6 @@ func _process(_delta: float) -> void:
 	if playing_intro:
 		return
 		
-	global_position = player.global_position + follow_offset + Vector2(0.0, cam_offset_y)
+	_set_position(player.global_position + Vector2(0, -50))
 
 	
