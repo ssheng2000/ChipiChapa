@@ -1,16 +1,16 @@
 [gd_scene format=4 uid="uid://ji12ko8iwom3"]
 
-[ext_resource type="Texture2D" uid="uid://bfcea6l5a76xp" path="res://Assets/Sprites/Background/sky.png" id="1_8gbba"]
-[ext_resource type="Script" uid="uid://0g5luehfovxk" path="res://Scripts/camera.gd" id="1_21xkr"]
-[ext_resource type="Texture2D" uid="uid://byabfi70k7axt" path="res://Assets/Sprites/Background/clouds.png" id="3_21xkr"]
-[ext_resource type="Texture2D" uid="uid://daj6p0eoi2vbq" path="res://Assets/Sprites/Background/mountains.png" id="4_21xkr"]
-[ext_resource type="Texture2D" uid="uid://c46gw4h2bieo" path="res://Assets/Sprites/Background/trees.png" id="4_kry3j"]
-[ext_resource type="Texture2D" uid="uid://cjcetg2fvl71r" path="res://Assets/Sprites/Background/town.png" id="5_21xkr"]
-[ext_resource type="Texture2D" uid="uid://cahpkiwpbe0p7" path="res://Assets/Sprites/tileset.png" id="7_6bp64"]
-[ext_resource type="Script" uid="uid://qjwjti8rijke" path="res://Scripts/player.gd" id="8_344ge"]
+[ext_resource type="Script" uid="uid://0g5luehfovxk" path="res://Scripts/camera.gd" id="1_c66t7"]
+[ext_resource type="Texture2D" uid="uid://bfcea6l5a76xp" path="res://Assets/Sprites/Background/sky.png" id="2_3he0p"]
+[ext_resource type="Texture2D" uid="uid://byabfi70k7axt" path="res://Assets/Sprites/Background/clouds.png" id="3_gpm26"]
+[ext_resource type="Texture2D" uid="uid://daj6p0eoi2vbq" path="res://Assets/Sprites/Background/mountains.png" id="4_3uemn"]
+[ext_resource type="Texture2D" uid="uid://c46gw4h2bieo" path="res://Assets/Sprites/Background/trees.png" id="5_rhlbw"]
+[ext_resource type="Texture2D" uid="uid://cjcetg2fvl71r" path="res://Assets/Sprites/Background/town.png" id="6_n8ffe"]
+[ext_resource type="Texture2D" uid="uid://cahpkiwpbe0p7" path="res://Assets/Sprites/tileset.png" id="7_akgx8"]
+[ext_resource type="Script" uid="uid://qjwjti8rijke" path="res://Scripts/test_player.gd" id="8_0pbyf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_344ge"]
-texture = ExtResource("7_6bp64")
+texture = ExtResource("7_akgx8")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/0 = 0
@@ -57,7 +57,7 @@ sources/0 = SubResource("TileSetAtlasSource_344ge")
 [node name="Main" type="Node2D" unique_id=710329752]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=431773745 node_paths=PackedStringArray("player", "sky", "clouds", "mountains", "trees", "town")]
-script = ExtResource("1_21xkr")
+script = ExtResource("1_c66t7")
 player = NodePath("../Player")
 sky = NodePath("../Sky")
 clouds = NodePath("../Clouds")
@@ -71,7 +71,7 @@ repeat_size = Vector2(256, 0)
 repeat_times = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="Sky" unique_id=1694042393]
-texture = ExtResource("1_8gbba")
+texture = ExtResource("2_3he0p")
 
 [node name="Clouds" type="Parallax2D" parent="." unique_id=456184451]
 scroll_scale = Vector2(0.02, 1)
@@ -79,14 +79,14 @@ repeat_size = Vector2(256, 0)
 repeat_times = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="Clouds" unique_id=1692052439]
-texture = ExtResource("3_21xkr")
+texture = ExtResource("3_gpm26")
 
 [node name="Mountains" type="Parallax2D" parent="." unique_id=1244010130]
 scroll_scale = Vector2(0.05, 1)
 repeat_size = Vector2(256, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Mountains" unique_id=45301372]
-texture = ExtResource("4_21xkr")
+texture = ExtResource("4_3uemn")
 
 [node name="Trees" type="Parallax2D" parent="." unique_id=878658985]
 scroll_scale = Vector2(0.2, 1)
@@ -94,7 +94,7 @@ repeat_size = Vector2(256, 0)
 repeat_times = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="Trees" unique_id=783818628]
-texture = ExtResource("4_kry3j")
+texture = ExtResource("5_rhlbw")
 
 [node name="Town" type="Parallax2D" parent="." unique_id=396089580]
 scroll_scale = Vector2(0.3, 1)
@@ -102,19 +102,19 @@ repeat_size = Vector2(256, 0)
 repeat_times = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="Town" unique_id=115589160]
-texture = ExtResource("5_21xkr")
+texture = ExtResource("6_n8ffe")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=485701562]
 tile_map_data = PackedByteArray("AADn/wQAAAABAAAAAADo/wQAAAABAAAAAADp/wQAAAABAAAAAADq/wQAAAABAAAAAADr/wQAAAABAAAAAADs/wQAAAABAAAAAADt/wQAAAABAAAAAADu/wQAAAABAAAAAADv/wQAAAABAAAAAADw/wQAAAABAAAAAADx/wQAAAABAAAAAADy/wQAAAABAAAAAADz/wQAAAABAAAAAAD0/wQAAAABAAAAAAD1/wQAAAABAAAAAAD2/wQAAAABAAAAAAD3/wQAAAABAAAAAAD4/wQAAAABAAAAAAD5/wQAAAABAAAAAAD6/wQAAAABAAAAAAD7/wQAAAABAAAAAAD8/wQAAAABAAAAAAD9/wQAAAABAAAAAAD+/wQAAAABAAAAAAD//wQAAAABAAAAAAAAAAQAAAABAAAAAAABAAQAAAABAAAAAAACAAQAAAABAAAAAAADAAQAAAABAAAAAAAEAAQAAAABAAAAAAAFAAQAAAABAAAAAAAGAAQAAAABAAAAAAAHAAQAAAABAAAAAAAIAAQAAAABAAAAAAAJAAQAAAABAAAAAAAKAAQAAAABAAAAAAALAAQAAAABAAAAAAAMAAQAAAABAAAAAAANAAQAAAABAAAAAAAOAAQAAAABAAAAAAAPAAQAAAABAAAAAAAQAAQAAAABAAAAAAARAAQAAAABAAAAAAASAAQAAAABAAAAAADl/wQAAAABAAAAAADm/wQAAAABAAAAAADn/wUAAAABAAEAAADo/wUAAAABAAEAAADp/wUAAAABAAEAAADq/wUAAAABAAEAAADr/wUAAAABAAEAAADs/wUAAAABAAEAAADt/wUAAAABAAEAAADu/wUAAAABAAEAAADv/wUAAAABAAEAAADw/wUAAAABAAEAAADx/wUAAAABAAEAAADy/wUAAAABAAEAAADz/wUAAAABAAEAAAD0/wUAAAABAAEAAAD1/wUAAAABAAEAAAD2/wUAAAABAAEAAAD3/wUAAAABAAEAAAD4/wUAAAABAAEAAAD5/wUAAAABAAEAAAD6/wUAAAABAAEAAAD7/wUAAAABAAEAAAD8/wUAAAABAAEAAAD9/wUAAAABAAEAAAD+/wUAAAABAAEAAAD//wUAAAABAAEAAAAAAAUAAAABAAEAAAABAAUAAAABAAEAAAACAAUAAAABAAEAAAADAAUAAAABAAEAAAAEAAUAAAABAAEAAAAFAAUAAAABAAEAAAAGAAUAAAABAAEAAAAHAAUAAAABAAEAAAAIAAUAAAABAAEAAAAJAAUAAAABAAEAAAAKAAUAAAABAAEAAAALAAUAAAABAAEAAAAMAAUAAAABAAEAAAANAAUAAAABAAEAAAAOAAUAAAABAAEAAAAPAAUAAAABAAEAAAAQAAUAAAABAAEAAAARAAUAAAABAAEAAAASAAUAAAABAAEAAAA=")
 tile_set = SubResource("TileSet_ynf5e")
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=2071713822]
-script = ExtResource("8_344ge")
+script = ExtResource("8_0pbyf")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=354829603]
 position = Vector2(-46.5, 54)
 scale = Vector2(0.3958333, 0.20833333)
-texture = ExtResource("7_6bp64")
+texture = ExtResource("7_akgx8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=839576673]
 position = Vector2(-47, 53)
