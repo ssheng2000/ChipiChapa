@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dk57p8lb3j1md"]
 
 [ext_resource type="PackedScene" uid="uid://cdonasd1xjlnd" path="res://Levels/level_template.tscn" id="1_w136y"]
-[ext_resource type="PackedScene" uid="uid://cfwvaka4kicae" path="res://Scenes/death_spikes.tscn" id="2_8fnhn"]
+[ext_resource type="PackedScene" path="res://Scenes/death_spikes.tscn" id="2_8fnhn"]
 
 [node name="level4" unique_id=824580844 instance=ExtResource("1_w136y")]
 ice_amount = 1

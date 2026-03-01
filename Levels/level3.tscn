@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cdonasd1xjlnd" path="res://Levels/level_template.tscn" id="1_06yxo"]
 [ext_resource type="PackedScene" uid="uid://blfhy8oh4xkip" path="res://Scenes/loot_box.tscn" id="2_2385j"]
-[ext_resource type="PackedScene" uid="uid://cfwvaka4kicae" path="res://Scenes/death_spikes.tscn" id="2_c5oim"]
+[ext_resource type="PackedScene" path="res://Scenes/death_spikes.tscn" id="2_c5oim"]
 
 [node name="level3" unique_id=824580844 instance=ExtResource("1_06yxo")]
 ice_amount = 1

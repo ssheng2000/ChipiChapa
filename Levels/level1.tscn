@@ -1,7 +1,10 @@
 [gd_scene format=3 uid="uid://biqqn61c2qcj6"]
 
 [ext_resource type="PackedScene" uid="uid://cdonasd1xjlnd" path="res://Levels/level_template.tscn" id="1_t21ke"]
-[ext_resource type="PackedScene" uid="uid://cfwvaka4kicae" path="res://Scenes/death_spikes.tscn" id="2_i4kf4"]
+[ext_resource type="PackedScene" path="res://Scenes/death_spikes.tscn" id="2_i4kf4"]
+[ext_resource type="Texture2D" uid="uid://bs3qc530p74rc" path="res://Assets/Sprites/Objects/tree1.png" id="3_fy36t"]
+[ext_resource type="Texture2D" uid="uid://boa0ay8kqmjow" path="res://Assets/Sprites/Objects/snowman.png" id="4_m6f6w"]
+[ext_resource type="Texture2D" uid="uid://hdbngdk2g3je" path="res://Assets/Sprites/Objects/tree2.png" id="5_302sc"]
 
 [node name="level1" unique_id=824580844 instance=ExtResource("1_t21ke")]
 pauses_amount = 1
@@ -39,3 +42,15 @@ scale = Vector2(7, 1)
 
 [node name="Mountains" parent="Parallax" parent_id_path=PackedInt32Array(545575289) index="2" unique_id=800845062]
 modulate = Color(1, 1, 1, 1)
+
+[node name="Tree1" type="Sprite2D" parent="." index="8" unique_id=1998935600]
+position = Vector2(7, 77)
+texture = ExtResource("3_fy36t")
+
+[node name="Snowman" type="Sprite2D" parent="." index="9" unique_id=46641122]
+position = Vector2(257, 81)
+texture = ExtResource("4_m6f6w")
+
+[node name="Tree2" type="Sprite2D" parent="." index="10" unique_id=996368650]
+position = Vector2(279, 78)
+texture = ExtResource("5_302sc")

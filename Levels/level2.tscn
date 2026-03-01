@@ -1,7 +1,10 @@
 [gd_scene format=3 uid="uid://d2vkb1aan776x"]
 
 [ext_resource type="PackedScene" uid="uid://cdonasd1xjlnd" path="res://Levels/level_template.tscn" id="1_24phs"]
-[ext_resource type="PackedScene" uid="uid://cfwvaka4kicae" path="res://Scenes/death_spikes.tscn" id="2_ty1rc"]
+[ext_resource type="PackedScene" path="res://Scenes/death_spikes.tscn" id="2_ty1rc"]
+[ext_resource type="Texture2D" uid="uid://hdbngdk2g3je" path="res://Assets/Sprites/Objects/tree2.png" id="3_m135w"]
+[ext_resource type="Texture2D" uid="uid://boa0ay8kqmjow" path="res://Assets/Sprites/Objects/snowman.png" id="4_pcft3"]
+[ext_resource type="Texture2D" uid="uid://bs3qc530p74rc" path="res://Assets/Sprites/Objects/tree1.png" id="5_p0prn"]
 
 [node name="level2" unique_id=824580844 instance=ExtResource("1_24phs")]
 pauses_amount = 1
@@ -27,3 +30,15 @@ scale = Vector2(18, 1)
 [node name="DeathSpikes2" parent="Spikes" parent_id_path=PackedInt32Array(126700118) index="1" unique_id=1604116677 instance=ExtResource("2_ty1rc")]
 position = Vector2(382.00006, 201)
 scale = Vector2(16, 1)
+
+[node name="Tree2" type="Sprite2D" parent="." index="8" unique_id=1465663884]
+position = Vector2(156, 78)
+texture = ExtResource("3_m135w")
+
+[node name="Snowman" type="Sprite2D" parent="." index="9" unique_id=927129720]
+position = Vector2(195, 1)
+texture = ExtResource("4_pcft3")
+
+[node name="Tree1" type="Sprite2D" parent="." index="10" unique_id=1449026310]
+position = Vector2(218, -3)
+texture = ExtResource("5_p0prn")
