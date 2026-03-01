@@ -22,6 +22,7 @@ func _ready():
 	GlobalEventBus.pause.connect(_on_pause_requested)
 	GlobalEventBus.unpause.connect(_on_unpause_requested)
 	GlobalEventBus.selected_block.connect(_on_block_select)
+	GlobalEventBus.loot_collected.connect(_on_loot_collected)
 	_update_pause_button()
 
 func _set_mode(new_mode: Mode):
@@ -77,6 +78,7 @@ func select_block(block: DataTypes.Blocks) -> int:
 func _on_block_select(block: DataTypes.Blocks) -> void:
 	if mode == Mode.BUILD:
 		select_block(block)
+		print("original_amounts", ice_amount, mushroom_amount, bird_amount)
 	return
 
 
@@ -86,3 +88,9 @@ func try_create_buildable(block_source : PackedScene) -> Node2D:
 	var start_position = instance.get_global_mouse_position()
 	instance.global_position = start_position
 	return instance
+	
+func _on_loot_collected(added_loot):
+	ice_amount += added_loot[0]
+	mushroom_amount += added_loot[1]
+	bird_amount += added_loot[2]
+	print("updated_amounts", ice_amount, mushroom_amount, bird_amount)
