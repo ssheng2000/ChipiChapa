@@ -21,3 +21,5 @@ signal selected_block(block_type: DataTypes.Blocks)
 signal loot_collected(added_loot: Array)
 
 signal block_successfully_selected(block_type: DataTypes.Blocks)
+
+signal placed_block

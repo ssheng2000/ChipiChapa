@@ -10,6 +10,8 @@ enum Mode { RUN, BUILD }
 @onready var easy_music = $Music/EasyMusic
 @onready var medium_music = $Music/MediumMusic
 @onready var hard_music = $Music/HardMusic
+@onready var placed_sfx = $Music/PlaceSFX
+@onready var death_sfx = $Music/DeathSFX
 
 @onready var player := $Player
 @onready var camera := $Camera2D
@@ -29,6 +31,7 @@ func _ready():
 	GlobalEventBus.next_level.connect(_on_next_level)
 	GlobalEventBus.restart_level.connect(_on_restart_level)
 	GlobalEventBus.death.connect(_on_death)
+	GlobalEventBus.placed_block.connect(_on_block_placed)
 	#GlobalEventBus.intro_finished.connect(_on_intro_finished)
 	player.hide()
 	_load_cutscene(0)
@@ -41,10 +44,10 @@ func _load_level(i: int):
 	if not restarting:
 		if (i==0):
 			easy_music.play()
-		if (i==2):
+		if (i==1):
 			easy_music.fade_out()
 			medium_music.play()
-		if (i==4):
+		if (i==2):
 			medium_music.fade_out()
 			hard_music.play()
 	if current_level and is_instance_valid(current_level):
@@ -90,7 +93,10 @@ func _load_cutscene(i: int):
 	return
 	
 func _on_death():
+	death_sfx.play()
+	await death_sfx.finished
 	GlobalEventBus.restart_level.emit()
+	
 	return
 	
 func _on_camera_intro_finished():
@@ -102,3 +108,18 @@ func _unhandled_input(event):
 	if event.is_action_pressed("restart"):
 		if not intro_playing:
 			GlobalEventBus.restart_level.emit()
+			
+func _on_block_placed():
+	placed_sfx.play()
+	
+	
+
+
+func _on_death_sfx_finished() -> void:
+	death_sfx.stop()
+	pass # Replace with function body.
+
+
+func _on_place_sfx_finished() -> void:
+	placed_sfx.stop()
+	pass # Replace with function body.
