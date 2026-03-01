@@ -1,31 +1,148 @@
 [gd_scene format=3 uid="uid://dar34ede2v7vu"]
 
-[ext_resource type="Script" path="res://Scripts/buildable_object.gd" id="1_0q7t7"]
-[ext_resource type="Texture2D" uid="uid://d4i57vu4p7j" path="res://icon.svg" id="2_e0au5"]
+[ext_resource type="Script" uid="uid://dtj4x5tlfda2i" path="res://Scripts/buildable_object.gd" id="1_0q7t7"]
+[ext_resource type="Texture2D" uid="uid://d2vtdg7kgi8e4" path="res://Assets/Sprites/Items/Mushroom/mushroom_bounce.png" id="2_8wxru"]
+[ext_resource type="Texture2D" uid="uid://b4s5m4iwooyn7" path="res://Assets/Sprites/Items/Mushroom/mushroom_idle.png" id="3_c6w58"]
+[ext_resource type="Texture2D" uid="uid://m2xy77ttd0yl" path="res://Assets/Sprites/Items/Mushroom/mushroom_press.png" id="4_aktc8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0q7t7"]
-size = Vector2(127, 24)
+size = Vector2(16, 2)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8wxru"]
-size = Vector2(100, 21)
+size = Vector2(16, 4.5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g77dt"]
+atlas = ExtResource("2_8wxru")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4qdqy"]
+atlas = ExtResource("2_8wxru")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2i6dj"]
+atlas = ExtResource("2_8wxru")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s8vh8"]
+atlas = ExtResource("2_8wxru")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2jrhu"]
+atlas = ExtResource("2_8wxru")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8wxru"]
+atlas = ExtResource("2_8wxru")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c6w58"]
+atlas = ExtResource("2_8wxru")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aktc8"]
+atlas = ExtResource("2_8wxru")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tecaq"]
+atlas = ExtResource("2_8wxru")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1rprf"]
+atlas = ExtResource("2_8wxru")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_krudx"]
+atlas = ExtResource("3_c6w58")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5r5le"]
+atlas = ExtResource("4_aktc8")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l735e"]
+atlas = ExtResource("4_aktc8")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tecaq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g77dt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4qdqy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2i6dj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s8vh8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2jrhu")
+}],
+"loop": false,
+"name": &"bounce",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8wxru")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c6w58")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aktc8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tecaq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1rprf")
+}],
+"loop": true,
+"name": &"bounce2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_krudx")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5r5le")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l735e")
+}],
+"loop": false,
+"name": &"press",
+"speed": 60.0
+}]
 
 [node name="Mushroom" type="Node2D" unique_id=1191292781]
 process_mode = 2
-scale = Vector2(0.5, 0.5)
 script = ExtResource("1_0q7t7")
+bounce_force = 180.0
 
 [node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=582075895]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" unique_id=909133432]
-position = Vector2(-0.5, 0)
+position = Vector2(0, 7)
 shape = SubResource("RectangleShape2D_0q7t7")
 
 [node name="BounceArea" type="Area2D" parent="RigidBody2D" unique_id=1810071199]
 collision_layer = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D/BounceArea" unique_id=1335594896]
-position = Vector2(0, -20)
+position = Vector2(0, 2.25)
 shape = SubResource("RectangleShape2D_8wxru")
 
-[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D" unique_id=823917014]
-texture = ExtResource("2_e0au5")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="RigidBody2D" unique_id=1039317199]
+sprite_frames = SubResource("SpriteFrames_tecaq")
+animation = &"bounce2"

@@ -13,7 +13,7 @@ var build_mode_enabled = false
 @export var is_blowing_right: bool
 
 var push_direction
-
+#remove bird collision, start bird animation, replace player sprite, do mushroom things, fix gravity, deinherit
 
 var state: State = State.PLACING
 var _bodies_in_wind: Array[Node2D] = []
@@ -21,6 +21,7 @@ var _mushroom_charged := false
 var _just_bounced := false
 
 @onready var body: Node = get_node_or_null(body_path)
+@onready var anim_sprite: AnimatedSprite2D = get_node_or_null("RigidBody2D/AnimatedSprite2D")
 
 func _ready():
 	if is_blowing_right:
@@ -41,6 +42,8 @@ func _ready():
 			if bounce_area:
 				bounce_area.body_entered.connect(_on_bounce_body_entered)
 				bounce_area.body_exited.connect(_on_bounce_body_exited)
+			if anim_sprite:
+				anim_sprite.animation_finished.connect(_on_mushroom_anim_finished)
 		DataTypes.Blocks.Bird:
 			var wind_area = get_node_or_null("RigidBody2D/WindArea")
 			if wind_area:
@@ -95,6 +98,7 @@ func _on_bounce_body_entered(b: Node2D):
 			b.velocity.y = -bounce_force
 			_mushroom_charged = false
 			_just_bounced = true
+			_play_mushroom_anim("bounce")
 
 func _on_bounce_body_exited(b: Node2D):
 	if b is CharacterBody2D:
@@ -102,6 +106,18 @@ func _on_bounce_body_exited(b: Node2D):
 			_just_bounced = false
 		else:
 			_mushroom_charged = true
+			_play_mushroom_anim("press")
+
+func _play_mushroom_anim(anim_name: String):
+	if anim_sprite and block_type == DataTypes.Blocks.Mushroom:
+		anim_sprite.play(anim_name)
+
+func _on_mushroom_anim_finished():
+	if anim_sprite == null:
+		return
+	# After bounce finishes, return to idle (uncharged)
+	if anim_sprite.animation == "bounce":
+		anim_sprite.play("idle")
 
 # ── Bird / Fan ── and b.is_in_group("player")
 func _on_wind_body_entered(b: Node2D):
