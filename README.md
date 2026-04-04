@@ -3,11 +3,9 @@
 https://github.com/user-attachments/assets/6b55fa59-b518-4845-86f8-c736330f0e40
 
 
-# Chipi's Journey 🏔️
-
 A strategic puzzle-platformer built for the **"Set in Stone"** Game Jam. 
 
-Chipi is still a child and doesn't have a sense of direction. Your goal is to manipulate the environment to help Chipi navigate the slippery mountains and reach Chapa safely.
+Chipi is still a child and doesn't have a sense of direction. Your goal is to manipulate the environment to help Chipi navigate the icy mountains and reach Chapa safely.
 
 ## 🎮 How to Play
 
